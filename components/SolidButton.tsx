@@ -1,11 +1,6 @@
+import { SolidButtonProps } from "@/type";
 import React from "react";
-import { TouchableOpacity, Text, Image, StyleSheet } from "react-native";
-
-type SolidButtonProps = {
-  text: string;
-  icon?: any;
-  onPress?: () => void;
-};
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 export function SolidButton({ text, icon, onPress }: SolidButtonProps) {
   return (

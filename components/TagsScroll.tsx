@@ -1,15 +1,13 @@
+import { Tag } from "@/type";
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-
-type Tag = {
-  label: string;
-};
 
 const tagsData: Tag[] = [
   { label: "Vegan friendly" },
   { label: "Vegetarian friendly" },
   { label: "300m from you" },
   { label: "$$$$" },
+  { label: "and others" },
 ];
 
 export default function TagsScroll() {

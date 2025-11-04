@@ -5,7 +5,6 @@ function ReviewContent() {
   return (
     <View style={{ marginBottom: 16 }}>
       <Text>Reviews List</Text>
-      {/* Здесь можешь добавить список отзывов */}
       <Text>Содержимое Review...</Text>
     </View>
   );

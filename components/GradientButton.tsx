@@ -1,12 +1,7 @@
+import { GradientButtonProps } from "@/type";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
-
-type GradientButtonProps = {
-  text: string;
-  icon?: any;
-  onPress?: () => void;
-};
 
 export function GradientButton({ text, icon, onPress }: GradientButtonProps) {
   return (

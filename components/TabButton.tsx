@@ -1,17 +1,13 @@
+import { isActiveButtonProps } from "@/type";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-type GradientButtonProps = {
-  title: string;
-  isActive?: boolean;
-  onPress?: () => void;
-};
 export default function TabButton({
   title,
   isActive,
   onPress,
-}: GradientButtonProps) {
+}: isActiveButtonProps) {
   if (isActive) {
     return (
       <LinearGradient

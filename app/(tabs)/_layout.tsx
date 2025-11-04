@@ -1,10 +1,8 @@
-import chatIcon from "@/assets/icons/chat.png";
-import dealsIcon from "@/assets/icons/deals.png";
-import friendsIcon from "@/assets/icons/friends.png";
-import heartIcon from "@/assets/icons/heart.png";
-import homeIcon from "@/assets/icons/home.png";
+import { images } from "@/constants";
+import { TabBarIconProps } from "@/type";
 import { Tabs } from "expo-router";
 import { Image, View } from "react-native";
+
 export default function TabsLayout() {
   const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
     <View className="tab-icon-wrap">
@@ -33,7 +31,7 @@ export default function TabsLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Home" icon={homeIcon} focused={focused} />
+            <TabBarIcon title="Home" icon={images.homeIcon} focused={focused} />
           ),
         }}
       />
@@ -42,7 +40,11 @@ export default function TabsLayout() {
         options={{
           title: "Social",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Social" icon={friendsIcon} focused={focused} />
+            <TabBarIcon
+              title="Social"
+              icon={images.friendsIcon}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -51,7 +53,11 @@ export default function TabsLayout() {
         options={{
           title: "Messages",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Messages" icon={chatIcon} focused={focused} />
+            <TabBarIcon
+              title="Messages"
+              icon={images.chatIcon}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -60,7 +66,11 @@ export default function TabsLayout() {
         options={{
           title: "Wishlist",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Wishlist" icon={heartIcon} focused={focused} />
+            <TabBarIcon
+              title="Wishlist"
+              icon={images.heartIcon}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -69,7 +79,11 @@ export default function TabsLayout() {
         options={{
           title: "Deals",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Deals" icon={dealsIcon} focused={focused} />
+            <TabBarIcon
+              title="Deals"
+              icon={images.dealsIcon}
+              focused={focused}
+            />
           ),
         }}
       />

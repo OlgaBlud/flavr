@@ -1,12 +1,7 @@
-import yellowStar from "@/assets/icons/star-yellow.png";
+import { images } from "@/constants";
+import { StatItemProps } from "@/type";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-
-type StatItemProps = {
-  icon: any; // шлях до картинки (require або {uri})
-  number: number;
-  label: string;
-};
 
 export default function StatItem({ icon, number, label }: StatItemProps) {
   return (
@@ -14,7 +9,7 @@ export default function StatItem({ icon, number, label }: StatItemProps) {
       <Image source={icon} style={styles.iconTop} resizeMode="contain" />
       <View style={styles.numberWrap}>
         <Text style={styles.number}>{number}</Text>
-        <Image source={yellowStar} />
+        <Image source={images.yellowStar} />
       </View>
       <Text style={styles.label}>{label}</Text>
     </View>
