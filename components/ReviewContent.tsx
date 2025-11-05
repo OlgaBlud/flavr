@@ -6,6 +6,7 @@ import ReviewItem from "./ReviewItem";
 function ReviewContent() {
   return (
     <FlatList
+      className="p-4"
       data={reviewsMock}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => <ReviewItem {...item} />}

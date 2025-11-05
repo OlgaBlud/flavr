@@ -28,6 +28,7 @@ module.exports = {
       fontFamily: {
         poppins: ["PoppinsRegular"],
         "poppins-medium": ["PoppinsMedium"],
+        "poppins-bold": ["PoppinsBold"],
         inter: ["InterRegular"],
         "inter-semibold": ["InterSemiBold"],
       },

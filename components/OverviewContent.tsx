@@ -26,14 +26,22 @@ function OverviewContent() {
       // contentContainerStyle={{ flexGrow: 1 }}
     >
       {/* // main info */}
-      <View style={styles.restMainWrap}>
-        <View style={{ gap: 8 }}>
-          <View style={styles.restDescrWrap}>
+
+      <View className="flex-row items-start justify-between mb-4">
+        <View className="gap-2">
+          {/* restDescrWrap: {
+    flexDirection: "row",
+    gap: 8,
+    alignItems: "center",
+  }, */}
+          <View className="flex-row items-center gap-2">
             <Text style={styles.restTypeText}>$$</Text>
             <View style={styles.orangeDot}></View>
             <Text style={styles.restTypeText}>American restaurant</Text>
           </View>
-          <Text style={styles.restName}>Wiley&#39;s downtown bistro</Text>
+          <Text className="text-text-main text-[20px] leading-[28px] capitalize font-poppins-bold">
+            Wiley&#39;s downtown bistro
+          </Text>
           <View style={styles.infoWrap}>
             <Image style={styles.scheduleIcon} source={icons.clockIcon} />
             <Text style={styles.scheduleText}>Open until 20:30 PM</Text>
@@ -89,19 +97,8 @@ function OverviewContent() {
 export default OverviewContent;
 
 const styles = StyleSheet.create({
-  restMainWrap: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    marginBottom: 16,
-  },
-
   // description
-  restDescrWrap: {
-    flexDirection: "row",
-    gap: 8,
-    alignItems: "center",
-  },
+
   restTypeText: {
     // American restaurant
     color: "#828282",
