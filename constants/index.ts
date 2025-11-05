@@ -17,6 +17,7 @@ import orangeStarIcon from "@/assets/icons/star-orange.png";
 import yellowStar from "@/assets/icons/star-yellow.png";
 
 // images
+import cafe from "@/assets/media/cafe.jpg";
 import pp1 from "@/assets/media/pp-1.png";
 import pp2 from "@/assets/media/pp-2.png";
 
@@ -41,4 +42,5 @@ export const icons = {
 export const images = {
   pp1,
   pp2,
+  cafe,
 };

@@ -18,7 +18,8 @@ import TagsScroll from "./TagsScroll";
 function OverviewContent() {
   return (
     <ScrollView
-      className="p-4"
+      className="p-4 flex-1"
+      contentContainerStyle={{ flexGrow: 1 }}
       // contentContainerStyle={{
       //   paddingLeft: insets.left,
       //   paddingRight: insets.right,

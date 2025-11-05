@@ -1,44 +1,66 @@
 import OverviewContent from "@/components/OverviewContent";
 import ReviewContent from "@/components/ReviewContent";
 import TabButton from "@/components/TabButton";
-import { icons } from "@/constants";
+import { icons, images } from "@/constants";
 import { useState } from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
+  const { width } = Dimensions.get("window");
   const [activeTab, setActiveTab] = useState("Overview");
   // const insets = useSafeAreaInsets();
   return (
-    <SafeAreaView style={styles.container} edges={["top"]}>
-      <View style={styles.topBar}>
-        <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
-          <Image source={icons.arrowIcon} />
-        </TouchableOpacity>
-        <View style={styles.reviewWrap}>
-          <TabButton
-            title="Overview"
-            isActive={activeTab === "Overview"}
-            onPress={() => setActiveTab("Overview")}
-          />
-          <TabButton
-            title="Review"
-            isActive={activeTab === "Review"}
-            onPress={() => setActiveTab("Review")}
-          />
+    <View className="flex-1">
+      <ImageBackground
+        // className="absolute top-0 w-full h-full"
+        style={{
+          position: "absolute",
+          top: -120,
+          width: width,
+          height: width,
+        }}
+        source={images.cafe}
+        resizeMode="cover"
+      ></ImageBackground>
+      <SafeAreaView className="flex-1" edges={["top"]}>
+        {/* top bar */}
+        <View style={styles.topBar} className="mt-2">
+          <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
+            <Image source={icons.arrowIcon} />
+          </TouchableOpacity>
+          <View style={styles.reviewWrap}>
+            <TabButton
+              title="Overview"
+              isActive={activeTab === "Overview"}
+              onPress={() => setActiveTab("Overview")}
+            />
+            <TabButton
+              title="Review"
+              isActive={activeTab === "Review"}
+              onPress={() => setActiveTab("Review")}
+            />
+          </View>
+          <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
+            <Image source={icons.saveIcon} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
-          <Image source={icons.saveIcon} />
-        </TouchableOpacity>
-      </View>
-      {/* main content */}
-      <View style={styles.mainContent}>
-        {/* <View style={{ padding: 16 }}> */}
-        {activeTab === "Overview" && <OverviewContent />}
-        {activeTab === "Review" && <ReviewContent />}
-        {/* </View> */}
-      </View>
-    </SafeAreaView>
+
+        {/* end topbar -> main content */}
+        <View style={styles.mainContent}>
+          {/* <View className="mt-40 rounded-t-3xl "> */}
+          {activeTab === "Overview" && <OverviewContent />}
+          {activeTab === "Review" && <ReviewContent />}
+        </View>
+      </SafeAreaView>
+    </View>
   );
 }
 
