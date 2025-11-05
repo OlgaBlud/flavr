@@ -1,4 +1,4 @@
-import { images } from "@/constants";
+import { icons } from "@/constants";
 import { StatItemProps } from "@/type";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
@@ -9,7 +9,7 @@ export default function StatItem({ icon, number, label }: StatItemProps) {
       <Image source={icon} style={styles.iconTop} resizeMode="contain" />
       <View style={styles.numberWrap}>
         <Text style={styles.number}>{number}</Text>
-        <Image source={images.yellowStar} />
+        <Image source={icons.yellowStar} />
       </View>
       <Text style={styles.label}>{label}</Text>
     </View>

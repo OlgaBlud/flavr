@@ -1,14 +1,30 @@
-import { images } from "@/constants";
+import { icons } from "@/constants";
+import { popularPlacesMock } from "@/mock-data/popularPlaces";
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { GradientButton } from "./GradientButton";
+import PopularPlaceCard from "./PopularPlaceCard";
 import { SolidButton } from "./SolidButton";
 import StatItem from "./StatItem";
 import TagsScroll from "./TagsScroll";
 
 function OverviewContent() {
   return (
-    <>
+    <ScrollView
+      className="p-4"
+      // contentContainerStyle={{
+      //   paddingLeft: insets.left,
+      //   paddingRight: insets.right,
+      // }}
+      // contentContainerStyle={{ flexGrow: 1 }}
+    >
       {/* // main info */}
       <View style={styles.restMainWrap}>
         <View style={{ gap: 8 }}>
@@ -19,24 +35,20 @@ function OverviewContent() {
           </View>
           <Text style={styles.restName}>Wiley&#39;s downtown bistro</Text>
           <View style={styles.infoWrap}>
-            <Image style={styles.scheduleIcon} source={images.clockIcon} />
+            <Image style={styles.scheduleIcon} source={icons.clockIcon} />
             <Text style={styles.scheduleText}>Open until 20:30 PM</Text>
           </View>
         </View>
         <View style={styles.infoWrap}>
-          <Image source={images.orangeStarIcon} />
+          <Image source={icons.orangeStarIcon} />
           <Text style={styles.ratingText}>4.8</Text>
         </View>
       </View>
       {/* // statistic */}
       <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
-        <StatItem
-          icon={images.atmosphereIcon}
-          number={4.8}
-          label="Atmosphere"
-        />
-        <StatItem icon={images.serviceIcon} number={4.3} label="Service" />
-        <StatItem icon={images.foodIcon} number={4.9} label="Food" />
+        <StatItem icon={icons.atmosphereIcon} number={4.8} label="Atmosphere" />
+        <StatItem icon={icons.serviceIcon} number={4.3} label="Service" />
+        <StatItem icon={icons.foodIcon} number={4.9} label="Food" />
       </View>
       {/* tags */}
       <View style={{ marginBottom: 16 }}>
@@ -47,20 +59,30 @@ function OverviewContent() {
       <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
         <GradientButton
           text="Call Now"
-          icon={images.phoneIcon}
+          icon={icons.phoneIcon}
           onPress={() => {}}
         />
         <SolidButton
           text="Navigate"
-          icon={images.navigateIcon}
+          icon={icons.navigateIcon}
           onPress={() => {}}
         />
       </View>
       {/* popular */}
       <View>
         <Text style={styles.title}>Popular places</Text>
+
+        <View>
+          <FlatList
+            horizontal
+            data={popularPlacesMock}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <PopularPlaceCard {...item} />}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
       </View>
-    </>
+    </ScrollView>
   );
 }
 

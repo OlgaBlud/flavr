@@ -28,3 +28,21 @@ export type isActiveButtonProps = {
 export type Tag = {
   label: string;
 };
+export type popularPlaceProps = {
+  image: any;
+  name: string;
+  rating?: number | null;
+  reviews?: number;
+  tags?: string[];
+  onLike?: () => void;
+  liked?: boolean;
+};
+
+export type ReviewProps = {
+  name: string;
+  photo: string;
+  food: number;
+  service: number;
+  atmosphere: number;
+  review: string;
+};

@@ -1,4 +1,4 @@
-import { images } from "@/constants";
+import { icons } from "@/constants";
 import { TabBarIconProps } from "@/type";
 import { Tabs } from "expo-router";
 import { Image, View } from "react-native";
@@ -31,7 +31,7 @@ export default function TabsLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Home" icon={images.homeIcon} focused={focused} />
+            <TabBarIcon title="Home" icon={icons.homeIcon} focused={focused} />
           ),
         }}
       />
@@ -42,7 +42,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Social"
-              icon={images.friendsIcon}
+              icon={icons.friendsIcon}
               focused={focused}
             />
           ),
@@ -55,7 +55,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Messages"
-              icon={images.chatIcon}
+              icon={icons.chatIcon}
               focused={focused}
             />
           ),
@@ -68,7 +68,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Wishlist"
-              icon={images.heartIcon}
+              icon={icons.heartIcon}
               focused={focused}
             />
           ),
@@ -81,7 +81,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Deals"
-              icon={images.dealsIcon}
+              icon={icons.dealsIcon}
               focused={focused}
             />
           ),

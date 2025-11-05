@@ -1,15 +1,9 @@
 import OverviewContent from "@/components/OverviewContent";
 import ReviewContent from "@/components/ReviewContent";
 import TabButton from "@/components/TabButton";
-import { images } from "@/constants";
+import { icons } from "@/constants";
 import { useState } from "react";
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
@@ -19,7 +13,7 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.topBar}>
         <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
-          <Image source={images.arrowIcon} />
+          <Image source={icons.arrowIcon} />
         </TouchableOpacity>
         <View style={styles.reviewWrap}>
           <TabButton
@@ -34,23 +28,16 @@ export default function HomeScreen() {
           />
         </View>
         <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
-          <Image source={images.saveIcon} />
+          <Image source={icons.saveIcon} />
         </TouchableOpacity>
       </View>
       {/* main content */}
-      <ScrollView
-        style={styles.scrollArea}
-        // contentContainerStyle={{
-        //   paddingLeft: insets.left,
-        //   paddingRight: insets.right,
-        // }}
-        // contentContainerStyle={{ flexGrow: 1 }}
-      >
-        <View style={{ padding: 16 }}>
-          {activeTab === "Overview" && <OverviewContent />}
-          {activeTab === "Review" && <ReviewContent />}
-        </View>
-      </ScrollView>
+      <View style={styles.mainContent}>
+        {/* <View style={{ padding: 16 }}> */}
+        {activeTab === "Overview" && <OverviewContent />}
+        {activeTab === "Review" && <ReviewContent />}
+        {/* </View> */}
+      </View>
     </SafeAreaView>
   );
 }
@@ -91,11 +78,11 @@ const styles = StyleSheet.create({
     // box-shadow: 0 4px 27px 0 rgba(174, 173, 173, 0.15);
     backgroundColor: "rgba(255, 255, 255, 0.3)",
   },
-  scrollArea: {
+  mainContent: {
+    flex: 1,
     backgroundColor: "#fff",
     marginBlockStart: 156,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
-    // gap: 16,
   },
 });
