@@ -2,6 +2,7 @@ import OverviewContent from "@/components/OverviewContent";
 import ReviewContent from "@/components/ReviewContent";
 import TabButton from "@/components/TabButton";
 import { icons, images } from "@/constants";
+import { BlurView } from "expo-blur";
 import { useState } from "react";
 import {
   Dimensions,
@@ -33,24 +34,30 @@ export default function HomeScreen() {
       <SafeAreaView className="flex-1" edges={["top"]}>
         {/* top bar */}
         <View style={styles.topBar} className="mt-2">
-          <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
-            <Image source={icons.arrowIcon} />
-          </TouchableOpacity>
-          <View style={styles.reviewWrap}>
-            <TabButton
-              title="Overview"
-              isActive={activeTab === "Overview"}
-              onPress={() => setActiveTab("Overview")}
-            />
-            <TabButton
-              title="Review"
-              isActive={activeTab === "Review"}
-              onPress={() => setActiveTab("Review")}
-            />
-          </View>
-          <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
-            <Image source={icons.saveIcon} />
-          </TouchableOpacity>
+          <BlurView className="rounded-full overflow-hidden">
+            <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
+              <Image source={icons.arrowIcon} />
+            </TouchableOpacity>
+          </BlurView>
+          <BlurView className="rounded-full overflow-hidden">
+            <View style={styles.reviewWrap}>
+              <TabButton
+                title="Overview"
+                isActive={activeTab === "Overview"}
+                onPress={() => setActiveTab("Overview")}
+              />
+              <TabButton
+                title="Review"
+                isActive={activeTab === "Review"}
+                onPress={() => setActiveTab("Review")}
+              />
+            </View>
+          </BlurView>
+          <BlurView className="rounded-full overflow-hidden">
+            <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
+              <Image source={icons.saveIcon} />
+            </TouchableOpacity>
+          </BlurView>
         </View>
 
         {/* end topbar -> main content */}

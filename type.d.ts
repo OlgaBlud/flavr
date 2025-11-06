@@ -46,3 +46,12 @@ export type ReviewProps = {
   atmosphere: number;
   review: string;
 };
+
+export interface AuthInputProps {
+  placeholder?: string;
+  value?: string;
+  onChangeText?: (text: string) => void;
+  label: string;
+  secureTextEntry?: boolean;
+  keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
+}

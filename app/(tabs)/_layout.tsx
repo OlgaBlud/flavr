@@ -1,9 +1,14 @@
 import { icons } from "@/constants";
 import { TabBarIconProps } from "@/type";
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
+import { useState } from "react";
 import { Image, View } from "react-native";
 
 export default function TabsLayout() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  if (!isAuthenticated) return <Redirect href="/sign-in" />;
+
   const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
     <View className="tab-icon-wrap">
       <Image
