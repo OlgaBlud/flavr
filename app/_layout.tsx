@@ -1,3 +1,4 @@
+import GlobalProvider from "@/lib/appwrite/global-provider";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { ActivityIndicator, View } from "react-native";
@@ -18,11 +19,13 @@ export default function RootLayout() {
     );
   }
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        contentStyle: { backgroundColor: "#fff" },
-      }}
-    />
+    <GlobalProvider>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: "#fff" },
+        }}
+      />
+    </GlobalProvider>
   );
 }

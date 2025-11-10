@@ -1,17 +1,18 @@
 import React from "react";
 import { Image, Text, TouchableOpacity } from "react-native";
 
-type ButtonProps = {
+type LoginButtonProps = {
   icon?: any;
   text: string;
   onPress?: () => void;
+  disabled?: boolean;
 };
 
-const LoginBtn = ({ icon, text, onPress }: ButtonProps) => {
+const LoginBtn = ({ icon, text, onPress, disabled }: LoginButtonProps) => {
   return (
     <TouchableOpacity
-      onPress={onPress}
-      activeOpacity={0.8}
+      onPress={!disabled ? onPress : undefined} // не вызывать onPress, если disabled
+      activeOpacity={disabled ? 1 : 0.8}
       className="w-full flex-row items-center gap-4 self-stretch bg-white rounded-lg p-[15px]"
       style={{
         shadowColor: "#81553D",

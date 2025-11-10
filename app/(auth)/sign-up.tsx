@@ -1,6 +1,7 @@
 import AuthInput from "@/components/AuthInput";
 import { GradientButton } from "@/components/GradientButton";
 import { SolidButton } from "@/components/SolidButton";
+import { registerUser } from "@/lib/auth";
 import {
   validateConfirmPassword,
   validateEmail,
@@ -70,6 +71,35 @@ export default function SignUp() {
     router.push("/sign-in");
   };
 
+  const handleSubmit = async () => {
+    const errorName = validateName(inputValues.name);
+    const errorEmail = validateEmail(inputValues.email);
+    const errorPassword = validatePassword(inputValues.password);
+    const errorConfirmPassword = validateConfirmPassword(
+      inputValues.password,
+      inputValues.confirmPassword
+    );
+
+    setInputValues((prev) => ({
+      ...prev,
+      errorName,
+      errorEmail,
+      errorPassword,
+      errorConfirmPassword,
+    }));
+
+    if (errorName || errorEmail || errorPassword || errorConfirmPassword) {
+      alert("Please fix the errors before submitting");
+      return;
+    }
+
+    await registerUser(
+      inputValues.name,
+      inputValues.email,
+      inputValues.password
+    );
+    alert("Registration successful!");
+  };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <ScrollView
@@ -117,7 +147,7 @@ export default function SignUp() {
             onBlur={checkConfirmPassword}
           />
 
-          <GradientButton text="Sign Up" onPress={() => {}} />
+          <GradientButton text="Sign Up" onPress={handleSubmit} />
 
           <SolidButton
             text="Already have an account? Sign In"

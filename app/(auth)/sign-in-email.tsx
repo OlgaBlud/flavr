@@ -2,6 +2,7 @@ import AuthInput from "@/components/AuthInput";
 import { GradientButton } from "@/components/GradientButton";
 import LoginBtn from "@/components/LoginBtn";
 import { icons } from "@/constants";
+import { loginUser } from "@/lib/auth";
 import { validateEmail, validatePassword } from "@/utils/validation";
 import { Link, router } from "expo-router";
 import React, { useState } from "react";
@@ -17,14 +18,14 @@ export default function SignInEmail() {
   interface InputValues {
     email: string;
     password: string;
-    errorEmail: null | string;
-    errorPassword: null | string;
+    errorEmail: string | null;
+    errorPassword: string | null;
   }
   // temporary
   const redirectMainLoginTab = () => {
     router.push("/sign-in");
   };
-  const [inputValues, setInputValues] = useState({
+  const [inputValues, setInputValues] = useState<InputValues>({
     email: "",
     password: "",
     errorEmail: null,
@@ -46,6 +47,25 @@ export default function SignInEmail() {
   const checkPassword = () => {
     const error = validatePassword(inputValues.password);
     handleChangeInput("errorPassword", error);
+  };
+
+  const handleSubmit = async () => {
+    const errorEmail = validateEmail(inputValues.email);
+    const errorPassword = validatePassword(inputValues.password);
+
+    setInputValues((prev) => ({
+      ...prev,
+      errorEmail,
+      errorPassword,
+    }));
+
+    if (errorEmail || errorPassword) {
+      alert("Please fix the errors before submitting");
+      return;
+    }
+
+    await loginUser(inputValues.email, inputValues.password);
+    alert("Login successful!");
   };
   return (
     <TouchableWithoutFeedback
@@ -78,7 +98,7 @@ export default function SignInEmail() {
               onBlur={checkPassword}
             />
 
-            <GradientButton text="Sign In" onPress={() => {}} />
+            <GradientButton text="Sign In" onPress={handleSubmit} />
           </View>
 
           <View className="flex justify-center mt-6 flex-row gap-3">
