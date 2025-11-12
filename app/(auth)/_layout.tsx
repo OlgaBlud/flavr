@@ -1,5 +1,6 @@
 import { icons, images } from "@/constants";
-import { Stack } from "expo-router";
+import { useGlobalContext } from "@/lib/appwrite/global-provider";
+import { Redirect, Stack } from "expo-router";
 import {
   Image,
   ImageBackground,
@@ -9,6 +10,9 @@ import {
 } from "react-native";
 
 export default function AuthLayout() {
+  const { isLogged } = useGlobalContext();
+
+  if (isLogged) return <Redirect href="/(tabs)" />;
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <ImageBackground

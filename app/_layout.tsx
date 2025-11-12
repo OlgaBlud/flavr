@@ -3,6 +3,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { ActivityIndicator, View } from "react-native";
 import "./global.css";
+
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     PoppinsMedium: require("../assets/fonts/Poppins-Medium.ttf"),

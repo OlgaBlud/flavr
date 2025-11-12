@@ -1,7 +1,7 @@
 import AuthInput from "@/components/AuthInput";
 import { GradientButton } from "@/components/GradientButton";
 import { SolidButton } from "@/components/SolidButton";
-import { registerUser } from "@/lib/auth";
+import { useGlobalContext } from "@/lib/appwrite/global-provider";
 import {
   validateConfirmPassword,
   validateEmail,
@@ -28,7 +28,7 @@ export default function SignUp() {
     errorPassword: string | null;
     errorConfirmPassword: string | null;
   }
-
+  const { handleSignUp } = useGlobalContext();
   const [inputValues, setInputValues] = useState<InputValues>({
     name: "",
     email: "",
@@ -92,13 +92,23 @@ export default function SignUp() {
       alert("Please fix the errors before submitting");
       return;
     }
+    try {
+      await handleSignUp(
+        inputValues.name,
+        inputValues.email,
+        inputValues.password
+      );
+      alert("Registration successful!");
+    } catch (err) {
+      alert("Registration failed: " + (err as Error).message);
+    }
+    // await registerUser(
+    //   inputValues.name,
+    //   inputValues.email,
+    //   inputValues.password
+    // );
 
-    await registerUser(
-      inputValues.name,
-      inputValues.email,
-      inputValues.password
-    );
-    alert("Registration successful!");
+    // alert("Registration successful!");
   };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

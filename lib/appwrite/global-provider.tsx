@@ -1,6 +1,12 @@
 import React, { createContext, ReactNode, useContext } from "react";
 
-import { getCurrentUser } from "./appwrite";
+import {
+  getCurrentUserAppwrite,
+  loginEmailAppwrite,
+  loginGoogleAppwrite,
+  logoutAppwrite,
+  signUpAppwrite,
+} from "./appwrite";
 import useAppwrite from "./useAppwrite";
 
 interface GlobalContextType {
@@ -8,7 +14,16 @@ interface GlobalContextType {
   user: User | null;
   loading: boolean;
   //   refetch: () => void;
+  //   refetch: () => Promise<void>;
   refetch: (newParams?: Record<string, string | number>) => Promise<void>;
+  handleLogout: () => Promise<void>;
+  handleSignUp: (
+    name: string,
+    email: string,
+    password: string
+  ) => Promise<void>;
+  handleLoginEmail: (email: string, password: string) => Promise<void>;
+  handleLoginGoogle: () => Promise<void>;
 }
 
 interface User {
@@ -29,11 +44,38 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
     loading,
     refetch,
   } = useAppwrite({
-    fn: getCurrentUser,
+    fn: getCurrentUserAppwrite,
   });
 
   const isLogged = !!user;
-  console.log(JSON.stringify(user, null, 2));
+  console.log("user data from GlobalProvider", JSON.stringify(user, null, 2));
+
+  const handleLogout = async () => {
+    const success = await logoutAppwrite();
+    if (success) {
+      await refetch();
+    }
+  };
+  const handleSignUp = async (
+    name: string,
+    email: string,
+    password: string
+  ) => {
+    await signUpAppwrite(name, email, password);
+    await loginEmailAppwrite(email, password);
+    await refetch();
+  };
+
+  const handleLoginEmail = async (email: string, password: string) => {
+    await loginEmailAppwrite(email, password);
+    await refetch();
+  };
+
+  const handleLoginGoogle = async () => {
+    const success = await loginGoogleAppwrite();
+    if (success) await refetch();
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -41,6 +83,10 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
         user: user ?? null,
         loading,
         refetch,
+        handleLogout,
+        handleSignUp,
+        handleLoginEmail,
+        handleLoginGoogle,
       }}
     >
       {children}

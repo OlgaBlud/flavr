@@ -1,6 +1,12 @@
 import * as Linking from "expo-linking";
 import { openAuthSessionAsync } from "expo-web-browser";
-import { Account, Avatars, Client, OAuthProvider } from "react-native-appwrite";
+import {
+  Account,
+  Avatars,
+  Client,
+  ID,
+  OAuthProvider,
+} from "react-native-appwrite";
 
 export const config = {
   platform: "flavr.test.oauth",
@@ -16,7 +22,39 @@ client
 
 export const avatar = new Avatars(client);
 export const account = new Account(client);
-
+// ------------------ REGISTER ------------------
+export async function signUpAppwrite(
+  name: string,
+  email: string,
+  password: string
+) {
+  try {
+    const newUser = await account.create({
+      userId: ID.unique(),
+      email: email,
+      password: password,
+      name: name,
+    });
+    return newUser;
+  } catch (error) {
+    console.log("Signup error:", error);
+    throw error;
+  }
+}
+// ------------------ LOGIN EMAIL ------------------
+export async function loginEmailAppwrite(email: string, password: string) {
+  try {
+    const session = await account.createEmailPasswordSession({
+      email: email,
+      password: password,
+    });
+    return session;
+  } catch (error) {
+    console.log("Login error:", error);
+    throw error;
+  }
+}
+// ------------------ LOGIN GOOGLE ------------------
 export async function loginGoogleAppwrite() {
   try {
     const redirectUri = Linking.createURL("/");
@@ -45,29 +83,36 @@ export async function loginGoogleAppwrite() {
     if (!session) throw new Error("Failed to create a session");
     return true;
   } catch (error) {
-    console.log(error);
+    console.log("loginGoogleAppwrite", error);
     return false;
   }
 }
-
-export async function logout() {
+// ------------------ LOGOUT ------------------
+export async function logoutAppwrite() {
   try {
     await account.deleteSession({ sessionId: "current" });
+
     return true;
   } catch (error) {
-    console.log(error);
+    console.log("logoutAppwrite", error);
     return false;
   }
 }
-export async function getCurrentUser() {
+// ------------------ GET CURRENT USER ------------------
+export async function getCurrentUserAppwrite() {
   try {
     const response = await account.get();
     if (response.$id) {
       const userAvatar = avatar.getInitials({ name: response.name });
       return { ...response, avatar: userAvatar.toString() };
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    const isGuestError =
+      error?.message?.includes("missing scopes") &&
+      error?.message?.includes("account");
+
+    if (isGuestError) return null;
+    console.log("getCurrentUserAppwrite і", error);
     return null;
   }
 }

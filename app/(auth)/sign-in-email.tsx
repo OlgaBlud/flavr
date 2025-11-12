@@ -2,7 +2,7 @@ import AuthInput from "@/components/AuthInput";
 import { GradientButton } from "@/components/GradientButton";
 import LoginBtn from "@/components/LoginBtn";
 import { icons } from "@/constants";
-import { loginUser } from "@/lib/auth";
+import { useGlobalContext } from "@/lib/appwrite/global-provider";
 import { validateEmail, validatePassword } from "@/utils/validation";
 import { Link, router } from "expo-router";
 import React, { useState } from "react";
@@ -15,6 +15,7 @@ import {
 } from "react-native";
 
 export default function SignInEmail() {
+  const { handleLoginEmail } = useGlobalContext();
   interface InputValues {
     email: string;
     password: string;
@@ -63,9 +64,9 @@ export default function SignInEmail() {
       alert("Please fix the errors before submitting");
       return;
     }
-
-    await loginUser(inputValues.email, inputValues.password);
-    alert("Login successful!");
+    await handleLoginEmail(inputValues.email, inputValues.password);
+    // await loginUser(inputValues.email, inputValues.password);
+    // alert("Login successful!");
   };
   return (
     <TouchableWithoutFeedback
