@@ -14,7 +14,9 @@
       // "bundleIdentifier": "com.flavr.app" //firebase
     },
     "android": {
-      "package": "com.flavr.app",
+      "package": "flavr.test.oauth", //appwrite
+      // "package": "com.flavr.app",//firebase
+
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

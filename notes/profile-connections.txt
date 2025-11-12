@@ -1,0 +1,104 @@
+ER-схема (структура бази даних) Appwrite
+
+┌────────────────────────┐
+│        USERS           │
+├────────────────────────┤
+│ userId (Auth ID)       │ ←─┐
+│ username               │   │
+│ email                  │   │
+│ avatar (fileId/url)    │   │
+│ bio                    │   │
+│ followersCount         │   │
+│ followingCount         │   │
+│ createdAt              │   │
+│ updatedAt              │   │
+└────────────────────────┘   │
+                             │
+                             │ 1
+                             │
+                             ▼
+┌────────────────────────┐    ┌────────────────────────┐
+│        POSTS           │    │        STORIES         │
+├────────────────────────┤    ├────────────────────────┤
+│ postId                 │    │ storyId                │
+│ authorId  ─────────────┘    │ authorId  ─────────────┘
+│ caption                 │   │ media (fileId/url)     │
+│ media (array[fileId])  │   │ expiresAt              │
+│ likesCount             │   │ viewers (array[userId])│
+│ commentsCount          │   │ createdAt              │
+│ createdAt              │   └────────────────────────┘
+└────────────────────────┘
+
+        ▲
+        │ 1
+        │
+        └───────────────┐
+                        │
+                        │ *
+┌────────────────────────┐
+│       COMMENTS         │
+├────────────────────────┤
+│ commentId              │
+│ postId  ───────────────┘
+│ authorId (userId)      │
+│ text                   │
+│ createdAt              │
+└────────────────────────┘
+
+        ▲
+        │ *
+        │
+        └───────────────┐
+                        │
+┌────────────────────────┐
+│        LIKES           │
+├────────────────────────┤
+│ likeId                 │
+│ postId ────────────────┘
+│ userId (liker)         │
+│ createdAt              │
+└────────────────────────┘
+
+┌────────────────────────┐
+│        FOLLOWS         │
+├────────────────────────┤
+│ followId               │
+│ followerId (userId)    │ → user who follows
+│ followingId (userId)   │ → user being followed
+│ createdAt              │
+└────────────────────────┘
+
+
+
+DATABASE: social_app
+
+COLLECTIONS:
+- users
+- posts
+- stories
+- comments
+- likes
+- follows
+
+
+🧩 Пояснення логіки
+Колекція	Призначення	Ключові поля
+users	Профілі користувачів. Один документ = один користувач.	userId, username, avatar, bio, followersCount
+posts	Фото/відео пости користувачів.	authorId, caption, media[], likesCount
+stories	Тимчасові історії (24 год).	authorId, media, expiresAt
+comments	Коментарі до постів.	postId, authorId, text
+likes	Лайки постів.	postId, userId
+follows	Взаємні підписки.	followerId, followingId
+⚙️ Ключові правила реалізації
+
+При реєстрації або логіні — створюєш документ у users, якщо його ще немає.
+
+При створенні посту — додаєш документ у posts, автор = поточний користувач.
+
+При лайку — створюєш документ у likes; перевіряєш, щоб не дублювався (userId + postId).
+
+При коментарі — створюєш документ у comments.
+
+При підписці — створюєш документ у follows.
+
+Історії (stories) — при створенні додаєш expiresAt = now + 24h; у функції Appwrite можна чистити прострочені історії.

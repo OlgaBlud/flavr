@@ -4,14 +4,18 @@ import {
   Account,
   Avatars,
   Client,
+  Databases,
   ID,
   OAuthProvider,
+  TablesDB,
 } from "react-native-appwrite";
 
 export const config = {
   platform: "flavr.test.oauth",
   endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT,
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
+  databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID,
+  usersTable: "users",
 };
 
 export const client = new Client();
@@ -22,6 +26,9 @@ client
 
 export const avatar = new Avatars(client);
 export const account = new Account(client);
+export const databases = new Databases(client);
+export const tables = new TablesDB(client);
+
 // ------------------ REGISTER ------------------
 export async function signUpAppwrite(
   name: string,
@@ -35,6 +42,8 @@ export async function signUpAppwrite(
       password: password,
       name: name,
     });
+    // Додаємо запис у таблицю користувачів
+    await createUserInDatabase(newUser.$id, name, email);
     return newUser;
   } catch (error) {
     console.log("Signup error:", error);
@@ -114,5 +123,33 @@ export async function getCurrentUserAppwrite() {
     if (isGuestError) return null;
     console.log("getCurrentUserAppwrite і", error);
     return null;
+  }
+}
+
+// ------------------ CREATE USER IN DATABASE ------------------
+export async function createUserInDatabase(
+  userId: string,
+  name: string,
+  email: string
+) {
+  try {
+    const avatarUrl = avatar.getInitialsURL(name);
+
+    const newUser = await tables.createRow({
+      databaseId: config.databaseId!,
+      tableId: config.usersTable!,
+      rowId: ID.unique(),
+      data: {
+        userId: userId,
+        userName: name,
+        userEmail: email,
+        avatar: avatarUrl,
+      },
+    });
+
+    return newUser;
+  } catch (error) {
+    console.log("CreateUserInDatabase error:", error);
+    throw error;
   }
 }
