@@ -7,6 +7,7 @@ import {
   Databases,
   ID,
   OAuthProvider,
+  Query,
   TablesDB,
 } from "react-native-appwrite";
 
@@ -43,6 +44,8 @@ export async function signUpAppwrite(
       name: name,
     });
     // Додаємо запис у таблицю користувачів
+    // await createUserInDatabase(newUser.$id, name, email);
+    await loginEmailAppwrite(email, password);
     await createUserInDatabase(newUser.$id, name, email);
     return newUser;
   } catch (error) {
@@ -67,16 +70,14 @@ export async function loginEmailAppwrite(email: string, password: string) {
 export async function loginGoogleAppwrite() {
   try {
     const redirectUri = Linking.createURL("/");
-    const response = await account.createOAuth2Token(
-      {
-        provider: OAuthProvider.Google,
-        success: redirectUri,
-        failure: redirectUri,
-      }
-      //   OAuthProvider.Google,
-      //   redirectUri
-    );
+    // Creating OAuth2 token;
+    const response = await account.createOAuth2Token({
+      provider: OAuthProvider.Google,
+      success: redirectUri,
+      failure: redirectUri,
+    });
     if (!response) throw new Error("Failed to log in");
+    // Opening browser auth session;
     const browserResult = await openAuthSessionAsync(
       response.toString(),
       redirectUri
@@ -88,11 +89,31 @@ export async function loginGoogleAppwrite() {
     const userId = url.searchParams.get("userId")?.toString();
     if (!secret || !userId)
       throw new Error("Failed to log in - no secret or userId");
+
+    // Creating session;
     const session = await account.createSession({ userId, secret });
     if (!session) throw new Error("Failed to create a session");
+    // Fetching user;
+    const user = await account.get();
+    //   Checking user in database;
+    const existingUser = await tables.listRows({
+      databaseId: config.databaseId!,
+      tableId: config.usersTable!,
+      queries: [Query.equal("userId", user.$id)],
+    });
+
+    if (existingUser.total === 0) {
+      // 👇 якщо користувача немає — створюємо його
+      await createUserInDatabase(user.$id, user.name, user.email);
+    }
+    // else {
+    //   console.log(" User already exists in database.");
+    // }
+
     return true;
   } catch (error) {
     console.log("loginGoogleAppwrite", error);
+
     return false;
   }
 }

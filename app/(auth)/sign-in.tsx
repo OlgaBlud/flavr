@@ -28,14 +28,14 @@ export default function SignIn() {
     <View className="px-5 mt-6 gap-4">
       <LoginBtn
         icon={icons.facebook}
-        text="Sign In with Google APpWrite"
-        onPress={handleLoginGoogleAppWrite}
+        text="Sign In with Facebook"
+        // onPress={}
         // disabled={!request}
       />
       <LoginBtn
         icon={icons.google}
         text="Sign In with Google"
-        onPress={() => promptAsync()}
+        onPress={handleLoginGoogleAppWrite}
         disabled={!request} // кнопка активна лише коли запит готовий
       />
       <LoginBtn

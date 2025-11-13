@@ -48,7 +48,7 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   });
 
   const isLogged = !!user;
-  console.log("user data from GlobalProvider", JSON.stringify(user, null, 2));
+  // console.log("user data from GlobalProvider", JSON.stringify(user, null, 2));
 
   const handleLogout = async () => {
     const success = await logoutAppwrite();
@@ -62,7 +62,8 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
     password: string
   ) => {
     await signUpAppwrite(name, email, password);
-    await loginEmailAppwrite(email, password);
+    // await loginEmailAppwrite(email, password);
+    // await createUserInDatabase(newUser.$id, name, email);
     await refetch();
   };
 
