@@ -1,13 +1,16 @@
+import Clock from "@/assets/icons/Clock";
+import Food from "@/assets/icons/Food";
+import Service from "@/assets/icons/Service";
+import Star from "@/assets/icons/Star";
 import { icons } from "@/constants";
 import { popularPlacesMock } from "@/mock-data/popularPlaces";
 import React from "react";
 import {
-  FlatList,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
+    FlatList,
+    ScrollView,
+    StyleSheet,
+    Text,
+    View
 } from "react-native";
 import { GradientButton } from "./GradientButton";
 import PopularPlaceCard from "./PopularPlaceCard";
@@ -44,20 +47,20 @@ function OverviewContent() {
             Wiley&#39;s downtown bistro
           </Text>
           <View style={styles.infoWrap}>
-            <Image style={styles.scheduleIcon} source={icons.clockIcon} />
+            <Clock width={16} height={16} color="#F56005" />
             <Text style={styles.scheduleText}>Open until 20:30 PM</Text>
           </View>
         </View>
         <View style={styles.infoWrap}>
-          <Image source={icons.orangeStarIcon} />
+          <Star width={16} height={16} color="#FF6B00" />
           <Text style={styles.ratingText}>4.8</Text>
         </View>
       </View>
       {/* // statistic */}
       <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
         <StatItem icon={icons.atmosphereIcon} number={4.8} label="Atmosphere" />
-        <StatItem icon={icons.serviceIcon} number={4.3} label="Service" />
-        <StatItem icon={icons.foodIcon} number={4.9} label="Food" />
+        <StatItem icon={<Service width={24} height={24} />} number={4.3} label="Service" />
+        <StatItem icon={<Food width={23} height={24} />} number={4.9} label="Food" />
       </View>
       {/* tags */}
       <View style={{ marginBottom: 16 }}>

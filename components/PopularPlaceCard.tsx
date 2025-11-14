@@ -1,13 +1,14 @@
 import React from "react";
 import {
-  Image,
-  ImageBackground,
-  Platform,
-  Text,
-  TouchableOpacity,
-  View,
+    Image,
+    ImageBackground,
+    Platform,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
+import Star from "@/assets/icons/Star";
 import { icons } from "@/constants";
 import { popularPlaceProps } from "@/type";
 import { BlurView } from "expo-blur";
@@ -48,7 +49,7 @@ export default function PopularPlaceCard({
             elevation: 8,
           }}
         >
-          <Image source={icons.yellowStar} className="w-[16] h-[16]" />
+          <Star width={16} height={16} color="#F9D013" />
           <Text className=" text-white text-[16px] leading-[22.4px] font-poppins-medium">
             {rating ? rating : "..."}
           </Text>

@@ -1,3 +1,5 @@
+import Food from "@/assets/icons/Food";
+import Service from "@/assets/icons/Service";
 import Star from "@/assets/icons/Star";
 import { icons } from "@/constants";
 import { ReviewProps } from "@/type";
@@ -45,7 +47,7 @@ export default function ReviewItem({
       {/* Показники */}
       <View className="flex-row gap-4 mb-2">
         <View className="items-center w-16">
-          <Image source={icons.foodIcon} className="w-6 h-6" />
+          <Food width={24} height={24} />
           <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] font-medium">
             {food}
           </Text>
@@ -56,7 +58,7 @@ export default function ReviewItem({
           {renderStars(food)}
         </View>
         <View className="items-center w-16">
-          <Image source={icons.serviceIcon} className="w-6 h-6" />
+          <Service width={24} height={24} />
           <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] font-medium">
             {service}
           </Text>

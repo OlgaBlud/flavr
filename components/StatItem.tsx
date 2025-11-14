@@ -1,15 +1,21 @@
-import { icons } from "@/constants";
+import Star from "@/assets/icons/Star";
 import { StatItemProps } from "@/type";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function StatItem({ icon, number, label }: StatItemProps) {
+  const isReactElement = React.isValidElement(icon);
+  
   return (
     <View style={styles.container}>
-      <Image source={icon} style={styles.iconTop} resizeMode="contain" />
+      {isReactElement ? (
+        <View style={styles.iconTop}>{icon}</View>
+      ) : (
+        <Image source={icon} style={styles.iconTop} resizeMode="contain" />
+      )}
       <View style={styles.numberWrap}>
         <Text style={styles.number}>{number}</Text>
-        <Image source={icons.yellowStar} />
+        <Star width={10} height={10} color="#F9D013" />
       </View>
       <Text style={styles.label}>{label}</Text>
     </View>
