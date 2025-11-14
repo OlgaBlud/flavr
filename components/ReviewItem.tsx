@@ -1,7 +1,7 @@
+import Atmosphere from "@/assets/icons/Atmosphere";
 import Food from "@/assets/icons/Food";
 import Service from "@/assets/icons/Service";
 import Star from "@/assets/icons/Star";
-import { icons } from "@/constants";
 import { ReviewProps } from "@/type";
 import React from "react";
 import { Image, Text, View } from "react-native";
@@ -68,7 +68,7 @@ export default function ReviewItem({
           {renderStars(service)}
         </View>
         <View className="items-center w-16">
-          <Image source={icons.atmosphereIcon} className="w-6 h-6" />
+          <Atmosphere width={22} height={21} />
           <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] font-medium">
             {atmosphere}
           </Text>

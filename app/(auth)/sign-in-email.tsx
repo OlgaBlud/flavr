@@ -1,5 +1,6 @@
+import Facebook from "@/assets/icons/Facebook";
 import AuthInput from "@/components/AuthInput";
-import { GradientButton } from "@/components/GradientButton";
+import GradientButton from "@/components/GradientButton";
 import LoginBtn from "@/components/LoginBtn";
 import { icons } from "@/constants";
 import { loginEmailAppwrite } from "@/lib/appwrite/appwrite";
@@ -9,12 +10,12 @@ import { validateEmail, validatePassword } from "@/utils/validation";
 import { Link, router } from "expo-router";
 import React, { useState } from "react";
 import {
-  Alert,
-  Keyboard,
-  ScrollView,
-  Text,
-  TouchableWithoutFeedback,
-  View,
+    Alert,
+    Keyboard,
+    ScrollView,
+    Text,
+    TouchableWithoutFeedback,
+    View,
 } from "react-native";
 
 export default function SignInEmail() {
@@ -128,7 +129,7 @@ export default function SignInEmail() {
           {/* social logins buttons */}
           <View className="gap-4">
             <LoginBtn
-              icon={icons.facebook}
+              icon={<Facebook width={24} height={24} color="#121212" />}
               text="Sign In with Facebook"
               onPress={redirectMainLoginTab}
             />

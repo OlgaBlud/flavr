@@ -1,15 +1,14 @@
 import React from "react";
 import {
-    Image,
     ImageBackground,
     Platform,
     Text,
     TouchableOpacity,
-    View,
+    View
 } from "react-native";
 
+import Like from "@/assets/icons/Like";
 import Star from "@/assets/icons/Star";
-import { icons } from "@/constants";
 import { popularPlaceProps } from "@/type";
 import { BlurView } from "expo-blur";
 
@@ -32,7 +31,7 @@ export default function PopularPlaceCard({
       >
         {/* Like button */}
         <TouchableOpacity onPress={onLike} className="self-end">
-          <Image source={icons.likeIcon} />
+          <Like width={16} height={16} color="white" />
         </TouchableOpacity>
 
         {/* Rating */}

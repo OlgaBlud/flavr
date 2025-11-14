@@ -1,8 +1,10 @@
+import Atmosphere from "@/assets/icons/Atmosphere";
 import Clock from "@/assets/icons/Clock";
 import Food from "@/assets/icons/Food";
+import Navigation from "@/assets/icons/Navigation";
+import Phone from "@/assets/icons/Phone";
 import Service from "@/assets/icons/Service";
 import Star from "@/assets/icons/Star";
-import { icons } from "@/constants";
 import { popularPlacesMock } from "@/mock-data/popularPlaces";
 import React from "react";
 import {
@@ -58,7 +60,7 @@ function OverviewContent() {
       </View>
       {/* // statistic */}
       <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
-        <StatItem icon={icons.atmosphereIcon} number={4.8} label="Atmosphere" />
+        <StatItem icon={<Atmosphere width={22} height={21} />} number={4.8} label="Atmosphere" />
         <StatItem icon={<Service width={24} height={24} />} number={4.3} label="Service" />
         <StatItem icon={<Food width={23} height={24} />} number={4.9} label="Food" />
       </View>
@@ -71,12 +73,12 @@ function OverviewContent() {
       <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
         <GradientButton
           text="Call Now"
-          icon={icons.phoneIcon}
+          icon={<Phone width={16} height={16} color="white" />}
           onPress={() => {}}
         />
         <SolidButton
           text="Navigate"
-          icon={icons.navigateIcon}
+          icon={<Navigation width={16} height={16} />}
           onPress={() => {}}
         />
       </View>
