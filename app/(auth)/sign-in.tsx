@@ -1,27 +1,35 @@
 import LoginBtn from "@/components/LoginBtn";
 import { icons } from "@/constants";
 import { loginGoogleAppwrite } from "@/lib/appwrite/appwrite";
-import { useGlobalContext } from "@/lib/appwrite/global-provider";
-import { useGoogleAuth } from "@/lib/googleAuth";
-// import { useGoogleAuth } from "@/lib/googleAuth";
+import useAuthStore from "@/store/auth.store";
+// import { useGlobalContext } from "@/lib/appwrite/global-provider";
+
 import { router } from "expo-router";
 import React from "react";
 import { Alert, View } from "react-native";
 
 export default function SignIn() {
-  const { refetch, loading, isLogged } = useGlobalContext();
+  // const { refetch, loading, isLogged } = useGlobalContext();
   const redirectEmailLogin = () => {
     router.push("/sign-in-email");
   };
+  const { fetchAuthenticatedUser } = useAuthStore();
 
-  const { promptAsync, request } = useGoogleAuth();
+  // const { promptAsync, request } = useGoogleAuth();
   const handleLoginGoogleAppWrite = async () => {
-    const result = await loginGoogleAppwrite();
-    if (result) {
-      console.log("logged successfully");
-      refetch();
-    } else {
-      Alert.alert("Error", "Failed loginGoogleAppwrite");
+    try {
+      const result = await loginGoogleAppwrite();
+      if (!result) {
+        Alert.alert("Error", "Failed loginGoogleAppwrite");
+        return;
+      }
+      console.log("logged google successfully");
+      await fetchAuthenticatedUser();
+      console.log("fetch google successfully");
+      router.replace("/");
+    } catch (error) {
+      console.log("Google login error:", error);
+      Alert.alert("Error catch", "Google login failed");
     }
   };
   return (
@@ -30,13 +38,11 @@ export default function SignIn() {
         icon={icons.facebook}
         text="Sign In with Facebook"
         // onPress={}
-        // disabled={!request}
       />
       <LoginBtn
         icon={icons.google}
         text="Sign In with Google"
         onPress={handleLoginGoogleAppWrite}
-        disabled={!request} // кнопка активна лише коли запит готовий
       />
       <LoginBtn
         icon={icons.mail}

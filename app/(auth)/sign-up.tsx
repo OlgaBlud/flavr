@@ -1,7 +1,9 @@
 import AuthInput from "@/components/AuthInput";
 import { GradientButton } from "@/components/GradientButton";
 import { SolidButton } from "@/components/SolidButton";
-import { useGlobalContext } from "@/lib/appwrite/global-provider";
+import { signUpAppwrite } from "@/lib/appwrite/appwrite";
+import useAuthStore from "@/store/auth.store";
+// import { useGlobalContext } from "@/lib/appwrite/global-provider";
 import {
   validateConfirmPassword,
   validateEmail,
@@ -11,6 +13,7 @@ import {
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
+  Alert,
   Keyboard,
   ScrollView,
   TouchableWithoutFeedback,
@@ -28,7 +31,7 @@ export default function SignUp() {
     errorPassword: string | null;
     errorConfirmPassword: string | null;
   }
-  const { handleSignUp } = useGlobalContext();
+  // const { handleSignUp } = useGlobalContext();
   const [inputValues, setInputValues] = useState<InputValues>({
     name: "",
     email: "",
@@ -39,7 +42,9 @@ export default function SignUp() {
     errorPassword: null,
     errorConfirmPassword: null,
   });
-
+  // const { isAuthenticated } = useAuthStore();
+  // if (isAuthenticated) return <Redirect href="/" />;
+  const { fetchAuthenticatedUser } = useAuthStore();
   const handleChangeInput = (key: keyof InputValues, value: string | null) => {
     setInputValues((prev) => ({ ...prev, [key]: value }));
   };
@@ -92,16 +97,30 @@ export default function SignUp() {
       alert("Please fix the errors before submitting");
       return;
     }
+
     try {
-      await handleSignUp(
+      await signUpAppwrite(
         inputValues.name,
         inputValues.email,
         inputValues.password
       );
-      alert("Registration successful!");
-    } catch (err) {
-      alert("Registration failed: " + (err as Error).message);
+      console.log("signUpAppwrite success");
+      await fetchAuthenticatedUser();
+      console.log("fetchAuthenticatedUser success");
+      router.replace("/");
+    } catch (error: any) {
+      Alert.alert("Error handleSubmit sign up", error.message);
     }
+    // try {
+    //   await handleSignUp(
+    //     inputValues.name,
+    //     inputValues.email,
+    //     inputValues.password
+    //   );
+    //   alert("Registration successful!");
+    // } catch (err) {
+    //   alert("Registration failed: " + (err as Error).message);
+    // }
     // await registerUser(
     //   inputValues.name,
     //   inputValues.email,

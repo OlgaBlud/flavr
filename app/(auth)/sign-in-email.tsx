@@ -2,11 +2,14 @@ import AuthInput from "@/components/AuthInput";
 import { GradientButton } from "@/components/GradientButton";
 import LoginBtn from "@/components/LoginBtn";
 import { icons } from "@/constants";
-import { useGlobalContext } from "@/lib/appwrite/global-provider";
+import { loginEmailAppwrite } from "@/lib/appwrite/appwrite";
+import useAuthStore from "@/store/auth.store";
+// import { useGlobalContext } from "@/lib/appwrite/global-provider";
 import { validateEmail, validatePassword } from "@/utils/validation";
 import { Link, router } from "expo-router";
 import React, { useState } from "react";
 import {
+  Alert,
   Keyboard,
   ScrollView,
   Text,
@@ -15,7 +18,7 @@ import {
 } from "react-native";
 
 export default function SignInEmail() {
-  const { handleLoginEmail } = useGlobalContext();
+  // const { handleLoginEmail } = useGlobalContext();
   interface InputValues {
     email: string;
     password: string;
@@ -49,7 +52,7 @@ export default function SignInEmail() {
     const error = validatePassword(inputValues.password);
     handleChangeInput("errorPassword", error);
   };
-
+  const { fetchAuthenticatedUser } = useAuthStore();
   const handleSubmit = async () => {
     const errorEmail = validateEmail(inputValues.email);
     const errorPassword = validatePassword(inputValues.password);
@@ -64,7 +67,16 @@ export default function SignInEmail() {
       alert("Please fix the errors before submitting");
       return;
     }
-    await handleLoginEmail(inputValues.email, inputValues.password);
+    try {
+      await loginEmailAppwrite(inputValues.email, inputValues.password);
+      await fetchAuthenticatedUser();
+      router.replace("/");
+      // console.log("success login email + password");
+    } catch (error: any) {
+      Alert.alert("Error LoginEmail:", error.message);
+    } finally {
+    }
+    // await handleLoginEmail(inputValues.email, inputValues.password);
     // await loginUser(inputValues.email, inputValues.password);
     // alert("Login successful!");
   };

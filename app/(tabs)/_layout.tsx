@@ -1,24 +1,25 @@
 import { icons } from "@/constants";
-import { useGlobalContext } from "@/lib/appwrite/global-provider";
+import useAuthStore from "@/store/auth.store";
+// import { useGlobalContext } from "@/lib/appwrite/global-provider";
 import { TabBarIconProps } from "@/type";
 import { Redirect, Tabs } from "expo-router";
-import { ActivityIndicator, Image, View } from "react-native";
+// import { Tabs } from "expo-router";
+import { Image, View } from "react-native";
 
 export default function TabsLayout() {
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // if (!isAuthenticated) return <Redirect href="/sign-in" />;
-  const { isLogged, loading } = useGlobalContext();
-  if (loading) {
-    return (
-      <View className="flex-1 items-center justify-center bg-white">
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
-  if (!isLogged) {
-    return <Redirect href="/sign-in" />;
-  }
+  const { isAuthenticated } = useAuthStore();
+  if (!isAuthenticated) return <Redirect href="/(auth)/sign-in" />;
+  // const { isLogged, loading } = useGlobalContext();
+  // if (loading) {
+  //   return (
+  //     <View className="flex-1 items-center justify-center bg-white">
+  //       <ActivityIndicator size="large" />
+  //     </View>
+  //   );
+  // }
+  // if (!isLogged) {
+  //   return <Redirect href="/sign-in" />;
+  // }
   const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
     <View className="tab-icon-wrap">
       <Image

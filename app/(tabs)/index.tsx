@@ -18,6 +18,9 @@ export default function HomeScreen() {
   const { width } = Dimensions.get("window");
   const [activeTab, setActiveTab] = useState("Overview");
   // const insets = useSafeAreaInsets();
+  // const { isAuthenticated } = useAuthStore();
+  // if (!isAuthenticated) return <Redirect href="/(auth)/sign-in" />;
+
   return (
     <View className="flex-1">
       <ImageBackground

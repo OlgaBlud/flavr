@@ -1,3 +1,5 @@
+import { Models } from "react-native-appwrite";
+
 export interface TabBarIconProps {
   focused: boolean;
   icon: ImageSourcePropType;
@@ -54,4 +56,10 @@ export interface AuthInputProps {
   label: string;
   secureTextEntry?: boolean;
   keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
+}
+
+export interface User extends Models.User {
+  name: string;
+  email: string;
+  avatar: string;
 }

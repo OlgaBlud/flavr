@@ -1,5 +1,6 @@
 import { icons, images } from "@/constants";
-import { useGlobalContext } from "@/lib/appwrite/global-provider";
+import useAuthStore from "@/store/auth.store";
+// import { useGlobalContext } from "@/lib/appwrite/global-provider";
 import { Redirect, Stack } from "expo-router";
 import {
   Image,
@@ -10,9 +11,12 @@ import {
 } from "react-native";
 
 export default function AuthLayout() {
-  const { isLogged } = useGlobalContext();
+  // const { isLogged } = useGlobalContext();
+  // if (isLogged) return <Redirect href="/(tabs)" />;
 
-  if (isLogged) return <Redirect href="/(tabs)" />;
+  const { isAuthenticated } = useAuthStore();
+  if (isAuthenticated) return <Redirect href="/" />;
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <ImageBackground
