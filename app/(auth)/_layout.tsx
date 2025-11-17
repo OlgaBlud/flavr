@@ -1,13 +1,14 @@
-import { icons, images } from "@/constants";
+import Flavr from "@/assets/icons/Flavr";
+import Logo from "@/assets/icons/Logo";
+import { images } from "@/constants";
 import useAuthStore from "@/store/auth.store";
 // import { useGlobalContext } from "@/lib/appwrite/global-provider";
 import { Redirect, Stack } from "expo-router";
 import {
-  Image,
-  ImageBackground,
-  Keyboard,
-  TouchableWithoutFeedback,
-  View,
+    ImageBackground,
+    Keyboard,
+    TouchableWithoutFeedback,
+    View
 } from "react-native";
 
 export default function AuthLayout() {
@@ -25,16 +26,12 @@ export default function AuthLayout() {
         resizeMode="cover"
       >
         <View className="items-center mt-60">
-          <Image
-            source={icons.logo}
-            className="w-[100px] h-[100px] mb-4"
-            resizeMode="contain"
-          />
-          <Image
-            source={icons.flavr}
-            className="w-[89px] h-[23px]"
-            resizeMode="contain"
-          />
+          <View className="w-[100px] h-[100px] mb-4">
+            <Logo width={100} height={100} />
+          </View>
+          <View className="w-[89px] h-[23px]">
+            <Flavr width={89} height={23} />
+          </View>
         </View>
         <Stack
           screenOptions={{

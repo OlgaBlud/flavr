@@ -1,11 +1,19 @@
 import { SolidButtonProps } from "@/type";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export function SolidButton({ text, icon, onPress }: SolidButtonProps) {
+  const isReactElement = React.isValidElement(icon);
+  
   return (
     <TouchableOpacity onPress={onPress} style={styles.solidButton}>
-      {icon && <Image source={icon} style={styles.icon} />}
+      {icon && (
+        isReactElement ? (
+          <View style={styles.icon}>{icon}</View>
+        ) : (
+          <Image source={icon} style={styles.icon} />
+        )
+      )}
       <Text style={styles.solidText}>{text}</Text>
     </TouchableOpacity>
   );

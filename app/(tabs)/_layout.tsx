@@ -1,8 +1,13 @@
-import { icons } from "@/constants";
+import Chat from "@/assets/icons/Chat";
+import Deals from "@/assets/icons/Deals";
+import Friends from "@/assets/icons/Friends";
+import Heart from "@/assets/icons/Heart";
+import Home from "@/assets/icons/Home";
 import useAuthStore from "@/store/auth.store";
 // import { useGlobalContext } from "@/lib/appwrite/global-provider";
 import { TabBarIconProps } from "@/type";
 import { Redirect, Tabs } from "expo-router";
+import React from "react";
 // import { Tabs } from "expo-router";
 import { Image, View } from "react-native";
 
@@ -20,16 +25,25 @@ export default function TabsLayout() {
   // if (!isLogged) {
   //   return <Redirect href="/sign-in" />;
   // }
-  const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
-    <View className="tab-icon-wrap">
-      <Image
-        source={icon}
-        className="tab-icon"
-        resizeMode="contain"
-        tintColor={focused ? "#FE8C00" : "#c8c8c8"}
-      />
-    </View>
-  );
+  const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => {
+    const isReactElement = React.isValidElement(icon);
+    const color = focused ? "#FE8C00" : "#c8c8c8";
+    
+    return (
+      <View className="tab-icon-wrap">
+        {isReactElement ? (
+          React.cloneElement(icon as React.ReactElement<{ color?: string }>, { color })
+        ) : (
+          <Image
+            source={icon}
+            className="tab-icon"
+            resizeMode="contain"
+            tintColor={color}
+          />
+        )}
+      </View>
+    );
+  };
 
   return (
     <Tabs
@@ -47,7 +61,7 @@ export default function TabsLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Home" icon={icons.homeIcon} focused={focused} />
+            <TabBarIcon title="Home" icon={<Home width={24} height={24} />} focused={focused} />
           ),
         }}
       />
@@ -58,7 +72,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Social"
-              icon={icons.friendsIcon}
+              icon={<Friends />}
               focused={focused}
             />
           ),
@@ -71,7 +85,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Messages"
-              icon={icons.chatIcon}
+              icon={<Chat />}
               focused={focused}
             />
           ),
@@ -84,7 +98,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Wishlist"
-              icon={icons.heartIcon}
+              icon={<Heart />}
               focused={focused}
             />
           ),
@@ -97,7 +111,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Deals"
-              icon={icons.dealsIcon}
+              icon={<Deals />}
               focused={focused}
             />
           ),

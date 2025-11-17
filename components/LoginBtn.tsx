@@ -9,6 +9,8 @@ type LoginButtonProps = {
 };
 
 const LoginBtn = ({ icon, text, onPress, disabled }: LoginButtonProps) => {
+  const isReactElement = React.isValidElement(icon);
+  
   return (
     <TouchableOpacity
       onPress={!disabled ? onPress : undefined} // не вызывать onPress, если disabled
@@ -23,7 +25,11 @@ const LoginBtn = ({ icon, text, onPress, disabled }: LoginButtonProps) => {
       }}
     >
       {icon && (
-        <Image source={icon} className="w-6 h-6 mr-2" resizeMode="contain" />
+        isReactElement ? (
+          icon
+        ) : (
+          <Image source={icon} className="w-6 h-6 mr-2" resizeMode="contain" />
+        )
       )}
       <Text className="text-text-main font-inter-semibold text-[16px] leading-[22.4px]">
         {text}
