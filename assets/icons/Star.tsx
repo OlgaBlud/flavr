@@ -13,4 +13,7 @@ const Star = ({
     />
   </Svg>
 );
+
+Star.displayName = 'Star';
+
 export default Star;

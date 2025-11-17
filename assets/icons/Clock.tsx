@@ -25,4 +25,6 @@ const Clock = ({
   </Svg>
 );
 
+Clock.displayName = 'Clock';
+
 export default Clock;

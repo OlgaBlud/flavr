@@ -18,4 +18,6 @@ const Save = ({
   </Svg>
 );
 
+Save.displayName = 'Save';
+
 export default Save;

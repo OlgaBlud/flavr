@@ -28,4 +28,6 @@ const Phone = ({
   </Svg>
 );
 
+Phone.displayName = 'Phone';
+
 export default Phone;

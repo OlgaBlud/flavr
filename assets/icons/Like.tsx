@@ -23,4 +23,6 @@ const Like = ({
   </Svg>
 );
 
+Like.displayName = 'Like';
+
 export default Like;

@@ -31,4 +31,6 @@ const Atmosphere = ({
   </Svg>
 );
 
+Atmosphere.displayName = 'Atmosphere';
+
 export default Atmosphere;

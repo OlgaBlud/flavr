@@ -31,4 +31,6 @@ const Service = ({
   </Svg>
 );
 
+Service.displayName = 'Service';
+
 export default Service;

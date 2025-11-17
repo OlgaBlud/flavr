@@ -36,4 +36,6 @@ const Food = ({
   </Svg>
 );
 
+Food.displayName = 'Food';
+
 export default Food;

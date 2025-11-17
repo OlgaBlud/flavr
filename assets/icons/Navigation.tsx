@@ -31,4 +31,6 @@ const Navigation = ({
   </Svg>
 );
 
+Navigation.displayName = 'Navigation';
+
 export default Navigation;
