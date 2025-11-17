@@ -5,10 +5,10 @@ import useAuthStore from "@/store/auth.store";
 // import { useGlobalContext } from "@/lib/appwrite/global-provider";
 import { Redirect, Stack } from "expo-router";
 import {
-    ImageBackground,
-    Keyboard,
-    TouchableWithoutFeedback,
-    View
+  ImageBackground,
+  Keyboard,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 
 export default function AuthLayout() {

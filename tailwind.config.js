@@ -1,7 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // NOTE: Update this to include the paths to all files that contain Nativewind classes.
-  // content: ["./App.tsx", "./components/**/*.{js,jsx,ts,tsx}"],
   content: [
     "./App.{js,jsx,ts,tsx}",
     "./app/**/*.{js,jsx,ts,tsx}",
@@ -11,24 +9,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // 🎨 Брендова палітра
-        primary: "#F56005", // головний помаранчевий (кнопки, акценти)
-        "primary-light": "#FFF8F4", // світлий фон/бекграунд кнопок
-        border: "rgba(244, 89, 5, 0.13)", // кольори бордерів, підсвітки
+        primary: "#F56005",
+        "primary-light": "#FFF8F4",
+        border: "rgba(244, 89, 5, 0.13)",
 
-        // 🖋️ Тексти
         text: {
-          main: "#121212", // основний чорний текст
-          secondary: "#828282", // другорядний
-          grey: "#6D6D6D", // неактивний або опис
-          light: "#7F7F7F", // допоміжний/нейтральний
+          main: "#121212",
+          secondary: "#828282",
+          grey: "#6D6D6D",
+          light: "#7F7F7F",
         },
 
-        // 🔘 Базовий фон
         background: {
           default: "#FFFFFF",
           soft: "#FFF8F4",
         },
+      },
+      fontSize: {
+        base: "16px",
       },
       fontFamily: {
         poppins: ["PoppinsRegular"],

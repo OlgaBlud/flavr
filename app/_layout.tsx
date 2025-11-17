@@ -1,7 +1,6 @@
-// import GlobalProvider from "@/lib/appwrite/global-provider";
 import useAuthStore from "@/store/auth.store";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Redirect, Stack } from "expo-router";
 import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
 import "./global.css";
@@ -14,10 +13,10 @@ export default function RootLayout() {
     InterRegular: require("../assets/fonts/Inter_24pt-Regular.ttf"),
     InterSemiBold: require("../assets/fonts/Inter_24pt-SemiBold.ttf"),
   });
-  const { fetchAuthenticatedUser, isLoading } = useAuthStore();
+  const { fetchAuthenticatedUser, isLoading, isAuthenticated } = useAuthStore();
 
   useEffect(() => {
-    console.log("Load user on mounting");
+    console.log("Load user on mounting 1");
     fetchAuthenticatedUser();
   }, []);
 
@@ -28,19 +27,17 @@ export default function RootLayout() {
       </View>
     );
   }
-
+  if (!isAuthenticated) return <Redirect href="/(auth)/sign-in" />;
   // if (!isAuthenticated && !isLoading) {
   //   return <Redirect href="/(auth)/sign-in" />;
   // }
 
   return (
-    // <GlobalProvider>
     <Stack
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: "#fff" },
       }}
     />
-    // </GlobalProvider>
   );
 }

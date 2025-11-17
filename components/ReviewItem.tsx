@@ -36,7 +36,7 @@ export default function ReviewItem({
       <View className="flex-row items-center mb-2 gap-2">
         <Image
           source={{ uri: photo }}
-          className="w-10 h-10 rounded-full"
+          className="w-[32px] h-[32px] rounded-full"
           resizeMode="cover"
         />
         <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] font-medium">
@@ -68,7 +68,7 @@ export default function ReviewItem({
           {renderStars(service)}
         </View>
         <View className="items-center w-16">
-          <Atmosphere width={22} height={21} />
+          <Atmosphere width={24} height={24} />
           <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] font-medium">
             {atmosphere}
           </Text>
