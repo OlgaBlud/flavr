@@ -2,14 +2,14 @@ import * as React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
 const ArrowLeft = ({
-  width = 24,
-  height = 24,
+  width = 20,
+  height = 20,
   color = "white",
   ...props
 }: SvgProps) => (
-  <Svg width={width} height={height} viewBox="0 0 24 24" fill="none" {...props}>
+  <Svg width={width} height={height} viewBox="0 0 20 20" fill="none" {...props}>
     <Path
-      d="M13.5 18.264L8.0667 12.8306C7.42503 12.189 7.42503 11.139 8.0667 10.4973L13.5 5.06396"
+      d="M12.5 16.5999L7.0667 11.1666C6.42503 10.5249 6.42503 9.4749 7.0667 8.83324L12.5 3.3999"
       stroke={color}
       strokeWidth={1.5}
       strokeMiterlimit={10}
@@ -18,5 +18,7 @@ const ArrowLeft = ({
     />
   </Svg>
 );
+
+ArrowLeft.displayName = 'ArrowLeft';
 
 export default ArrowLeft;

@@ -1,3 +1,4 @@
+import ArrowLeft from "@/assets/icons/ArrowLeft";
 import Save from "@/assets/icons/Save";
 import OverviewContent from "@/components/OverviewContent";
 import ReviewContent from "@/components/ReviewContent";
@@ -6,11 +7,11 @@ import { images } from "@/constants";
 import { BlurView } from "expo-blur";
 import { useState } from "react";
 import {
-    Dimensions,
-    ImageBackground,
-    StyleSheet,
-    TouchableOpacity,
-    View
+  Dimensions,
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -39,7 +40,7 @@ export default function HomeScreen() {
         <View style={styles.topBar} className="mt-2">
           <BlurView className="rounded-full overflow-hidden">
             <TouchableOpacity style={styles.btnWrap} onPress={() => {}}>
-              <Save width={24} height={24} color="white" />
+              <ArrowLeft width={20} height={20} color="white" />
             </TouchableOpacity>
           </BlurView>
           <BlurView className="rounded-full overflow-hidden">

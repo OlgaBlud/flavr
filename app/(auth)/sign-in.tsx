@@ -1,7 +1,7 @@
 import Facebook from "@/assets/icons/Facebook";
+import Google from "@/assets/icons/Google";
 import Mail from "@/assets/icons/Mail";
 import LoginBtn from "@/components/LoginBtn";
-import { icons } from "@/constants";
 import { loginGoogleAppwrite } from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
 // import { useGlobalContext } from "@/lib/appwrite/global-provider";
@@ -42,7 +42,7 @@ export default function SignIn() {
         // onPress={}
       />
       <LoginBtn
-        icon={icons.google}
+        icon={<Google width={24} height={24} />}
         text="Sign In with Google"
         onPress={handleLoginGoogleAppWrite}
       />

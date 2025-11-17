@@ -22,4 +22,6 @@ const Facebook = ({
   </Svg>
 );
 
+Facebook.displayName = 'Facebook';
+
 export default Facebook;

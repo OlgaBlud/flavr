@@ -1,5 +1,8 @@
+import Chat from "@/assets/icons/Chat";
+import Deals from "@/assets/icons/Deals";
+import Friends from "@/assets/icons/Friends";
+import Heart from "@/assets/icons/Heart";
 import Home from "@/assets/icons/Home";
-import { icons } from "@/constants";
 import useAuthStore from "@/store/auth.store";
 // import { useGlobalContext } from "@/lib/appwrite/global-provider";
 import { TabBarIconProps } from "@/type";
@@ -69,7 +72,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Social"
-              icon={icons.friendsIcon}
+              icon={<Friends />}
               focused={focused}
             />
           ),
@@ -82,7 +85,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Messages"
-              icon={icons.chatIcon}
+              icon={<Chat />}
               focused={focused}
             />
           ),
@@ -95,7 +98,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Wishlist"
-              icon={icons.heartIcon}
+              icon={<Heart />}
               focused={focused}
             />
           ),
@@ -108,7 +111,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Deals"
-              icon={icons.dealsIcon}
+              icon={<Deals />}
               focused={focused}
             />
           ),

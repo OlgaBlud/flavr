@@ -26,4 +26,6 @@ const Mail = ({
   </Svg>
 );
 
+Mail.displayName = 'Mail';
+
 export default Mail;

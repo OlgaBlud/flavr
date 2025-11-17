@@ -4,6 +4,8 @@ import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 export function GradientButton({ text, icon, onPress }: GradientButtonProps) {
+  const isReactElement = React.isValidElement(icon);
+  
   return (
     <TouchableOpacity onPress={onPress} style={{ flex: 1 }}>
       <View className="rounded-full overflow-hidden">
@@ -16,7 +18,11 @@ export function GradientButton({ text, icon, onPress }: GradientButtonProps) {
         >
           <View className=" px-[6px] py-4 flex-row items-center justify-center gap-2 flex-1">
             {icon && (
-              <Image source={icon} className="w-5 h-5" resizeMode="contain" />
+              isReactElement ? (
+                <View className="w-5 h-5">{icon}</View>
+              ) : (
+                <Image source={icon} className="w-5 h-5" resizeMode="contain" />
+              )
             )}
             <Text className="text-white text-[14px] font-poppins-medium text-center">
               {text}
