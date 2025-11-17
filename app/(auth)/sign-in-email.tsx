@@ -1,7 +1,7 @@
 import Facebook from "@/assets/icons/Facebook";
 import Google from "@/assets/icons/Google";
 import AuthInput from "@/components/AuthInput";
-import GradientButton from "@/components/GradientButton";
+import { GradientButton } from "@/components/GradientButton";
 import LoginBtn from "@/components/LoginBtn";
 import { loginEmailAppwrite } from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
@@ -10,12 +10,12 @@ import { validateEmail, validatePassword } from "@/utils/validation";
 import { Link, router } from "expo-router";
 import React, { useState } from "react";
 import {
-    Alert,
-    Keyboard,
-    ScrollView,
-    Text,
-    TouchableWithoutFeedback,
-    View,
+  Alert,
+  Keyboard,
+  ScrollView,
+  Text,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 
 export default function SignInEmail() {
