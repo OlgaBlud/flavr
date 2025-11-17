@@ -133,7 +133,7 @@ export async function getCurrentUserAppwrite() {
   try {
     const response = await account.get();
     if (response.$id) {
-      const userAvatar = avatar.getInitials({ name: response.name });
+      const userAvatar = avatar.getInitialsURL(response.name);
       return { ...response, avatar: userAvatar.toString() };
     }
   } catch (error: any) {
