@@ -1,22 +1,28 @@
 import useAuthStore from "@/store/auth.store";
 import { useFonts } from "expo-font";
-import { Redirect, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
 import "./global.css";
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({
+  console.log(" Rendering Root Layout");
+  const { fetchAuthenticatedUser, isLoading, user } = useAuthStore();
+  const [fontsLoaded, error] = useFonts({
     PoppinsMedium: require("../assets/fonts/Poppins-Medium.ttf"),
     PoppinsRegular: require("../assets/fonts/Poppins-Regular.ttf"),
     PoppinsBold: require("../assets/fonts/Poppins-Bold.ttf"),
     InterRegular: require("../assets/fonts/Inter_24pt-Regular.ttf"),
     InterSemiBold: require("../assets/fonts/Inter_24pt-SemiBold.ttf"),
   });
-  const { fetchAuthenticatedUser, isLoading, isAuthenticated } = useAuthStore();
 
   useEffect(() => {
-    console.log("Load user on mounting 1");
+    if (error) throw error; // Якщо  помилка зі шрифтами
+    // console.log("fonts error", error);
+  }, [error]);
+
+  useEffect(() => {
+    console.log("Start fetch AuthenticatedUser Root Layout");
     fetchAuthenticatedUser();
   }, []);
 
@@ -27,11 +33,7 @@ export default function RootLayout() {
       </View>
     );
   }
-  if (!isAuthenticated) return <Redirect href="/(auth)/sign-in" />;
-  // if (!isAuthenticated && !isLoading) {
-  //   return <Redirect href="/(auth)/sign-in" />;
-  // }
-
+  // console.log("user Root Layout", user);
   return (
     <Stack
       screenOptions={{

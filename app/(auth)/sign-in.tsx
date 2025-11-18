@@ -4,20 +4,17 @@ import Mail from "@/assets/icons/Mail";
 import LoginBtn from "@/components/LoginBtn";
 import { loginGoogleAppwrite } from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
-// import { useGlobalContext } from "@/lib/appwrite/global-provider";
 
 import { router } from "expo-router";
 import React from "react";
 import { Alert, View } from "react-native";
 
 export default function SignIn() {
-  // const { refetch, loading, isLogged } = useGlobalContext();
   const redirectEmailLogin = () => {
     router.push("/sign-in-email");
   };
   const { fetchAuthenticatedUser } = useAuthStore();
 
-  // const { promptAsync, request } = useGoogleAuth();
   const handleLoginGoogleAppWrite = async () => {
     try {
       const result = await loginGoogleAppwrite();
@@ -25,12 +22,12 @@ export default function SignIn() {
         Alert.alert("Error", "Failed loginGoogleAppwrite");
         return;
       }
-      console.log("logged google successfully");
+      // console.log("logged google successfully");
       await fetchAuthenticatedUser();
-      console.log("fetch google successfully");
+      // console.log("fetch google successfully");
       router.replace("/");
     } catch (error) {
-      console.log("Google login error:", error);
+      // console.log("Google login error:", error);
       Alert.alert("Error catch", "Google login failed");
     }
   };

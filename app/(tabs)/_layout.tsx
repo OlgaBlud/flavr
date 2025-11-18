@@ -3,27 +3,19 @@ import Deals from "@/assets/icons/Deals";
 import Friends from "@/assets/icons/Friends";
 import Heart from "@/assets/icons/Heart";
 import Home from "@/assets/icons/Home";
-// import { useGlobalContext } from "@/lib/appwrite/global-provider";
+import useAuthStore from "@/store/auth.store";
+
 import { TabBarIconProps } from "@/type";
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import React from "react";
-// import { Tabs } from "expo-router";
+
 import { Image, View } from "react-native";
 
 export default function TabsLayout() {
-  // const { isAuthenticated } = useAuthStore();
-  // if (!isAuthenticated) return <Redirect href="/(auth)/sign-in" />;
-  // const { isLogged, loading } = useGlobalContext();
-  // if (loading) {
-  //   return (
-  //     <View className="flex-1 items-center justify-center bg-white">
-  //       <ActivityIndicator size="large" />
-  //     </View>
-  //   );
-  // }
-  // if (!isLogged) {
-  //   return <Redirect href="/sign-in" />;
-  // }
+  console.log("Rendering Tabs Layout");
+  const { isAuthenticated } = useAuthStore();
+  if (!isAuthenticated) return <Redirect href="/sign-in" />;
+
   const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => {
     const isReactElement = React.isValidElement(icon);
     const color = focused ? "#FE8C00" : "#c8c8c8";

@@ -2,7 +2,7 @@ import Flavr from "@/assets/icons/Flavr";
 import Logo from "@/assets/icons/Logo";
 import { images } from "@/constants";
 import useAuthStore from "@/store/auth.store";
-// import { useGlobalContext } from "@/lib/appwrite/global-provider";
+
 import { Redirect, Stack } from "expo-router";
 import {
   ImageBackground,
@@ -12,9 +12,7 @@ import {
 } from "react-native";
 
 export default function AuthLayout() {
-  // const { isLogged } = useGlobalContext();
-  // if (isLogged) return <Redirect href="/(tabs)" />;
-
+  console.log("Rendering AuthLayout");
   const { isAuthenticated } = useAuthStore();
   if (isAuthenticated) return <Redirect href="/" />;
 

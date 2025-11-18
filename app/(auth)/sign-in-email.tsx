@@ -5,7 +5,7 @@ import { GradientButton } from "@/components/GradientButton";
 import LoginBtn from "@/components/LoginBtn";
 import { loginEmailAppwrite } from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
-// import { useGlobalContext } from "@/lib/appwrite/global-provider";
+
 import { validateEmail, validatePassword } from "@/utils/validation";
 import { Link, router } from "expo-router";
 import React, { useState } from "react";
@@ -19,7 +19,6 @@ import {
 } from "react-native";
 
 export default function SignInEmail() {
-  // const { handleLoginEmail } = useGlobalContext();
   interface InputValues {
     email: string;
     password: string;
@@ -77,9 +76,6 @@ export default function SignInEmail() {
       Alert.alert("Error LoginEmail:", error.message);
     } finally {
     }
-    // await handleLoginEmail(inputValues.email, inputValues.password);
-    // await loginUser(inputValues.email, inputValues.password);
-    // alert("Login successful!");
   };
   return (
     <TouchableWithoutFeedback
@@ -133,7 +129,10 @@ export default function SignInEmail() {
               text="Sign In with Facebook"
               onPress={redirectMainLoginTab}
             />
-            <LoginBtn icon={<Google width={24} height={24} />} text="Sign In with Google" />
+            <LoginBtn
+              icon={<Google width={24} height={24} />}
+              text="Sign In with Google"
+            />
           </View>
         </View>
       </ScrollView>
