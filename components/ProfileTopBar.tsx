@@ -10,7 +10,7 @@ const ProfileTopBar = () => {
   //   {/* color: #121212; /* Header 2 */ font-family: Inter; font-size: 16px;
   //   font-style: normal; font-weight: 600; line-height: 140%; /* */}
   return (
-    <View className="mb-12">
+    <View className="py-[8px]">
       <Text className="pb-4 font-inter-semibold text-[16px] leading-[140%] text-text-main ">
         {user!.name}
       </Text>

@@ -1,7 +1,10 @@
+import UpdateProfileIcon from "@/assets/icons/component-icons/UpdateProfileIcon";
+import FilterButton from "@/components/FilterBtn";
+import { GradientButton } from "@/components/GradientButton";
 import ProfileTopBar from "@/components/ProfileTopBar";
 import useAuthStore from "@/store/auth.store";
 import { useRouter } from "expo-router";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 function ProfileScreen() {
@@ -11,19 +14,27 @@ function ProfileScreen() {
   return (
     <SafeAreaView className="flex-1  bg-white p-6">
       <ProfileTopBar />
-      <Text>Profile Screen</Text>
-      {/* Back button */}
-
-      <TouchableOpacity onPress={() => router.back()}>
-        <Text style={{ fontSize: 18 }}>← Back</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        className="px-6 py-3 bg-orange-500 rounded-xl"
-        onPress={() => router.push("/profile/edit-profile")}
-      >
-        <Text style={{ color: "#fff", fontSize: 16 }}>Edit profile</Text>
-      </TouchableOpacity>
+      {/* profile buttons */}
+      <View className="flex-row gap-[8px] pt-[8px]">
+        <View className="flex-1">
+          <GradientButton
+            text="Update Profile"
+            icon={<UpdateProfileIcon width={16} height={16} color={"white"} />}
+            onPress={() => router.push("/profile/edit-profile")}
+          />
+        </View>
+        <View className="flex-1">
+          <FilterButton
+            title="Messages"
+            active={true}
+            fullWidth={true}
+            onPress={() => router.push("/(tabs)/messages")}
+          />
+        </View>
+      </View>
+      <View className="mt-20">
+        <Text>Profile Screen</Text>
+      </View>
     </SafeAreaView>
   );
 }
