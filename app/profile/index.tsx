@@ -1,29 +1,22 @@
+import ProfileTopBar from "@/components/ProfileTopBar";
 import useAuthStore from "@/store/auth.store";
 import { useRouter } from "expo-router";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function ProfileScreen() {
   const router = useRouter();
   const { user } = useAuthStore();
 
   return (
-    <View className="flex-1 items-center justify-center bg-white p-6">
-      <Text>My Profile Screen</Text>
+    <SafeAreaView className="flex-1  bg-white p-6">
+      <ProfileTopBar />
+      <Text>Profile Screen</Text>
       {/* Back button */}
 
-      <TouchableOpacity
-        onPress={() => router.back()}
-        className="absolute top-12 left-4"
-      >
+      <TouchableOpacity onPress={() => router.back()}>
         <Text style={{ fontSize: 18 }}>← Back</Text>
       </TouchableOpacity>
-
-      <Image
-        source={{ uri: user?.avatar }}
-        style={{ width: 120, height: 120, borderRadius: 80 }}
-      />
-
-      <Text style={{ fontSize: 24, marginVertical: 16 }}>{user?.name}</Text>
 
       <TouchableOpacity
         className="px-6 py-3 bg-orange-500 rounded-xl"
@@ -31,7 +24,7 @@ function ProfileScreen() {
       >
         <Text style={{ color: "#fff", fontSize: 16 }}>Edit profile</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 export default ProfileScreen;
