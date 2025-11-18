@@ -9,6 +9,7 @@ export type GradientButtonProps = {
   text: string;
   icon?: any;
   onPress?: () => void;
+  className?: string;
 };
 
 export type SolidButtonProps = {

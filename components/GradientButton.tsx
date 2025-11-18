@@ -3,11 +3,16 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
-export function GradientButton({ text, icon, onPress }: GradientButtonProps) {
+export function GradientButton({
+  text,
+  icon,
+  onPress,
+  className,
+}: GradientButtonProps) {
   const isReactElement = React.isValidElement(icon);
-  
+
   return (
-    <TouchableOpacity onPress={onPress} style={{ flex: 1 }}>
+    <TouchableOpacity onPress={onPress}>
       <View className="rounded-full overflow-hidden">
         <LinearGradient
           colors={["#FF9500", "#F45905"]}
@@ -16,14 +21,13 @@ export function GradientButton({ text, icon, onPress }: GradientButtonProps) {
 
           // style={styles.gradientButton}
         >
-          <View className=" px-[6px] py-4 flex-row items-center justify-center gap-2 flex-1">
-            {icon && (
-              isReactElement ? (
+          <View className=" px-[6px] py-4 flex-row items-center justify-center gap-2">
+            {icon &&
+              (isReactElement ? (
                 <View className="w-5 h-5">{icon}</View>
               ) : (
                 <Image source={icon} className="w-5 h-5" resizeMode="contain" />
-              )
-            )}
+              ))}
             <Text className="text-white text-[14px] font-poppins-medium text-center">
               {text}
             </Text>

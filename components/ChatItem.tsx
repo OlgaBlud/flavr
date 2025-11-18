@@ -1,5 +1,6 @@
 import Dots3X from "@/assets/icons/component-icons/Dots3X";
 import { Chat } from "@/mock-data/messages";
+import { router } from "expo-router";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 type ChatItemProps = {
@@ -9,7 +10,10 @@ type ChatItemProps = {
 const ChatItem = ({ item }: ChatItemProps) => {
   return (
     <View className="flex-row items-center pt-2 pb-4 border-b border-[#8282821A]">
-      <TouchableOpacity className="flex-row items-center flex-1">
+      <TouchableOpacity
+        className="flex-row items-center flex-1"
+        onPress={() => router.push(`/messages/${item.id}`)}
+      >
         <Image
           source={{ uri: item.avatar }}
           className="w-[40px] h-[40px] rounded-full mr-4"

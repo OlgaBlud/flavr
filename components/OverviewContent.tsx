@@ -7,13 +7,7 @@ import Service from "@/assets/icons/Service";
 import Star from "@/assets/icons/Star";
 import { popularPlacesMock } from "@/mock-data/popularPlaces";
 import React from "react";
-import {
-    FlatList,
-    ScrollView,
-    StyleSheet,
-    Text,
-    View
-} from "react-native";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import { GradientButton } from "./GradientButton";
 import PopularPlaceCard from "./PopularPlaceCard";
 import { SolidButton } from "./SolidButton";
@@ -60,9 +54,21 @@ function OverviewContent() {
       </View>
       {/* // statistic */}
       <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
-        <StatItem icon={<Atmosphere width={22} height={21} />} number={4.8} label="Atmosphere" />
-        <StatItem icon={<Service width={24} height={24} />} number={4.3} label="Service" />
-        <StatItem icon={<Food width={23} height={24} />} number={4.9} label="Food" />
+        <StatItem
+          icon={<Atmosphere width={22} height={21} />}
+          number={4.8}
+          label="Atmosphere"
+        />
+        <StatItem
+          icon={<Service width={24} height={24} />}
+          number={4.3}
+          label="Service"
+        />
+        <StatItem
+          icon={<Food width={23} height={24} />}
+          number={4.9}
+          label="Food"
+        />
       </View>
       {/* tags */}
       <View style={{ marginBottom: 16 }}>
@@ -71,11 +77,13 @@ function OverviewContent() {
       </View>
       {/* buttons */}
       <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
-        <GradientButton
-          text="Call Now"
-          icon={<Phone width={16} height={16} color="white" />}
-          onPress={() => {}}
-        />
+        <View className="flex-1">
+          <GradientButton
+            text="Call Now"
+            icon={<Phone width={16} height={16} color="white" />}
+            onPress={() => {}}
+          />
+        </View>
         <SolidButton
           text="Navigate"
           icon={<Navigation width={16} height={16} />}

@@ -9,6 +9,7 @@ import FilterButton from "@/components/FilterBtn";
 import { Chat, mockChats } from "@/mock-data/messages";
 import useAuthStore from "@/store/auth.store";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import { useState } from "react";
 
 import {
@@ -36,7 +37,8 @@ export default function MessagesScreen() {
     <SafeAreaView className="bg-[#FDFBF9] flex-1 px-[20px]" edges={["top"]}>
       {/* _____________________________top bar messages__________________________ */}
       <View className="flex-row items-center justify-between ">
-        <TouchableOpacity>
+        {/* add profile update transition */}
+        <TouchableOpacity onPress={() => router.push("/profile/edit-profile")}>
           <LinearGradient
             colors={["#FF9500", "#F45905"]}
             start={{ x: 0.5, y: 0 }}
@@ -76,7 +78,11 @@ export default function MessagesScreen() {
       </View>
       {/* _____________________________search__________________________ */}
       <View className="flex-row  py-2 gap-2">
-        <TouchableOpacity className="py-2 ">
+        {/* add avatar transition to profile page */}
+        <TouchableOpacity
+          className="py-2"
+          onPress={() => router.push("/profile")}
+        >
           <Image
             source={{ uri: user!.avatar }}
             className="w-[40px] h-[40px] rounded-full"
