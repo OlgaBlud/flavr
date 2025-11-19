@@ -1,9 +1,10 @@
+import ProfileInnerTabs from "@/components/ProfileInnerTabs";
 import ProfileMainBtns from "@/components/ProfileMainBtns";
 import ProfileTopBar from "@/components/ProfileTopBar";
 import StoryCollectionAddBtn from "@/components/StoryCollectionAddBtn";
 import StoryCollections from "@/components/StoryCollections";
 import { storyCollections } from "@/mock-data/storyCollections";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 function ProfileScreen() {
@@ -20,11 +21,8 @@ function ProfileScreen() {
         <StoryCollectionAddBtn />
         <StoryCollections storyCollections={storyCollections} />
       </View>
-      {/* profile tabs +posts */}
-
-      <View className=" items-center  border-y-hairline border-s-cyan-400">
-        <Text>Profile inner Tabs</Text>
-      </View>
+      {/* profile tabs */}
+      <ProfileInnerTabs />
     </SafeAreaView>
   );
 }
