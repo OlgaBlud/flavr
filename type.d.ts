@@ -64,3 +64,9 @@ export interface User extends Models.User {
   email: string;
   avatar: string;
 }
+
+export interface StoryCollection {
+  id: string;
+  title: string;
+  cover: string;
+}
