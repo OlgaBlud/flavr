@@ -1,7 +1,7 @@
-import Atmosphere from "@/assets/icons/Atmosphere";
-import Food from "@/assets/icons/Food";
-import Service from "@/assets/icons/Service";
-import Star from "@/assets/icons/Star";
+import Atmosphere from "@/assets/icons/component-icons/Atmosphere";
+import Food from "@/assets/icons/component-icons/Food";
+import Service from "@/assets/icons/component-icons/Service";
+import Star from "@/assets/icons/component-icons/Star";
 import { ReviewProps } from "@/type";
 import React from "react";
 import { Image, Text, View } from "react-native";

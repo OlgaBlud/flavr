@@ -1,8 +1,8 @@
-import Chat from "@/assets/icons/Chat";
-import Deals from "@/assets/icons/Deals";
-import Friends from "@/assets/icons/Friends";
-import Heart from "@/assets/icons/Heart";
-import Home from "@/assets/icons/Home";
+import Chat from "@/assets/icons/component-icons/Chat";
+import Deals from "@/assets/icons/component-icons/Deals";
+import Friends from "@/assets/icons/component-icons/Friends";
+import Heart from "@/assets/icons/component-icons/Heart";
+import Home from "@/assets/icons/component-icons/Home";
 import useAuthStore from "@/store/auth.store";
 
 import { TabBarIconProps } from "@/type";

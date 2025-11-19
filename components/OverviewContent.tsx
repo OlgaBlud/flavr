@@ -1,10 +1,10 @@
-import Atmosphere from "@/assets/icons/Atmosphere";
-import Clock from "@/assets/icons/Clock";
-import Food from "@/assets/icons/Food";
-import Navigation from "@/assets/icons/Navigation";
-import Phone from "@/assets/icons/Phone";
-import Service from "@/assets/icons/Service";
-import Star from "@/assets/icons/Star";
+import Atmosphere from "@/assets/icons/component-icons/Atmosphere";
+import Clock from "@/assets/icons/component-icons/Clock";
+import Food from "@/assets/icons/component-icons/Food";
+import Navigation from "@/assets/icons/component-icons/Navigation";
+import Phone from "@/assets/icons/component-icons/Phone";
+import Service from "@/assets/icons/component-icons/Service";
+import Star from "@/assets/icons/component-icons/Star";
 import { popularPlacesMock } from "@/mock-data/popularPlaces";
 import React from "react";
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";

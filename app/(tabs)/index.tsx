@@ -1,5 +1,5 @@
-import ArrowLeft from "@/assets/icons/ArrowLeft";
-import Save from "@/assets/icons/Save";
+import ArrowLeft from "@/assets/icons/component-icons/ArrowLeft";
+import Save from "@/assets/icons/component-icons/Save";
 import OverviewContent from "@/components/OverviewContent";
 import ReviewContent from "@/components/ReviewContent";
 import TabButton from "@/components/TabButton";
@@ -11,7 +11,7 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 

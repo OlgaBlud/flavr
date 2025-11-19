@@ -1,14 +1,14 @@
 import React from "react";
 import {
-    ImageBackground,
-    Platform,
-    Text,
-    TouchableOpacity,
-    View
+  ImageBackground,
+  Platform,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
-import Like from "@/assets/icons/Like";
-import Star from "@/assets/icons/Star";
+import Like from "@/assets/icons/component-icons/Like";
+import Star from "@/assets/icons/component-icons/Star";
 import { popularPlaceProps } from "@/type";
 import { BlurView } from "expo-blur";
 

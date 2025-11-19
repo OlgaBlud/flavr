@@ -1,9 +1,9 @@
 import ArrowDown from "@/assets/icons/component-icons/ArrowDown";
 import Dots3X from "@/assets/icons/component-icons/Dots3X";
+import Filter from "@/assets/icons/component-icons/Filter";
+import Microphone from "@/assets/icons/component-icons/Microphone";
+import Search from "@/assets/icons/component-icons/Search";
 import UpdateProfileIcon from "@/assets/icons/component-icons/UpdateProfileIcon";
-import Filter from "@/assets/icons/Filter";
-import Microphone from "@/assets/icons/Microphone";
-import Search from "@/assets/icons/Search";
 import ChatItem from "@/components/ChatItem";
 import FilterButton from "@/components/FilterBtn";
 import { Chat, mockChats } from "@/mock-data/messages";

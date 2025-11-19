@@ -1,11 +1,11 @@
-import Star from "@/assets/icons/Star";
+import Star from "@/assets/icons/component-icons/Star";
 import { StatItemProps } from "@/type";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function StatItem({ icon, number, label }: StatItemProps) {
   const isReactElement = React.isValidElement(icon);
-  
+
   return (
     <View style={styles.container}>
       {isReactElement ? (

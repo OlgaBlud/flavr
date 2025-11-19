@@ -1,4 +1,4 @@
-import ArrowLeft from "@/assets/icons/ArrowLeft";
+import ArrowLeft from "@/assets/icons/component-icons/ArrowLeft";
 import { GradientButton } from "@/components/GradientButton";
 import useAuthStore from "@/store/auth.store";
 import { useRouter } from "expo-router";

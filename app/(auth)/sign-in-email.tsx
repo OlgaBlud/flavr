@@ -1,5 +1,5 @@
-import Facebook from "@/assets/icons/Facebook";
-import Google from "@/assets/icons/Google";
+import Facebook from "@/assets/icons/component-icons/Facebook";
+import Google from "@/assets/icons/component-icons/Google";
 import AuthInput from "@/components/AuthInput";
 import { GradientButton } from "@/components/GradientButton";
 import LoginBtn from "@/components/LoginBtn";
