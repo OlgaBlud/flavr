@@ -10,6 +10,7 @@ const ProfilePlacesList = () => {
       renderItem={({ item }) => <RestaurantCard {...item} />}
       keyExtractor={(item) => item.id}
       showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ gap: 12 }}
     />
   );
 };

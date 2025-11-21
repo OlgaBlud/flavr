@@ -1,9 +1,11 @@
 import ArrowDown from "@/assets/icons/component-icons/ArrowDown";
+import Reviewers from "@/assets/icons/component-icons/Reviewers";
 import { BlurView } from "expo-blur";
 import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Platform, Text, TouchableOpacity, View } from "react-native";
 import RatingList from "./RatingList";
 import RestaurantTags from "./RestaurantTags";
+import Stars from "./Stars";
 
 type RestaurantCardProps = {
   name: string;
@@ -26,12 +28,21 @@ const RestaurantCard = ({
   friendReviews,
   tags,
 }: RestaurantCardProps) => {
+  const { food, service, atmosphere } = ratings;
+  const generalRating = Number(((food + service + atmosphere) / 3).toFixed(1));
+
   return (
-    <View className="bg-white rounded-[8px] border border-green-500 flex-row">
-      {/* <View>
-        <Image source={{ uri: image }} resizeMode="cover" />
-      </View> */}
-      <View className="w-[111px] relative" style={{ aspectRatio: 111 / 159 }}>
+    <View
+      className="bg-white rounded-[8px]  flex-row  "
+      style={{
+        shadowColor: "#81553D",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.08,
+        shadowRadius: 20,
+        elevation: 4,
+      }}
+    >
+      <View className="w-[111px] relative " style={{ aspectRatio: 111 / 159 }}>
         <Image
           source={{ uri: image }}
           //   className="w-full h-full"
@@ -39,8 +50,9 @@ const RestaurantCard = ({
           resizeMode="cover"
         />
         <BlurView
-          intensity={30}
-          tint="light"
+          // need to change shadow
+          intensity={Platform.OS === "ios" ? 30 : 100}
+          tint={Platform.OS === "ios" ? "default" : "light"}
           style={{
             position: "absolute",
             bottom: 4,
@@ -52,9 +64,18 @@ const RestaurantCard = ({
             overflow: "hidden",
           }}
         >
-          <Text className="text-white text-[12px] font-poppins-medium">
-            Add review
-          </Text>
+          <View className="flex-row items-center">
+            <Reviewers width={16} height={16} color={"#ffffff"} />
+            <Text className="ml-1 font-inter text-[10px] leading-[132%] text-white">
+              Overall Rating
+            </Text>
+          </View>
+          <View className="flex-row items-center">
+            <Text className="mr-1 text-white text-[12px] font-poppins-medium">
+              {generalRating}
+            </Text>
+            <Stars rating={generalRating} size={10} />
+          </View>
         </BlurView>
       </View>
       <View className="px-[10px] py-[8px] gap-2">

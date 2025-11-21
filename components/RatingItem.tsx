@@ -1,6 +1,6 @@
-import Star from "@/assets/icons/component-icons/Star";
 import React from "react";
 import { Text, View } from "react-native";
+import Stars from "./Stars";
 
 type RatingItemProps = {
   icon: React.ReactNode;
@@ -9,22 +9,7 @@ type RatingItemProps = {
   stars: number;
 };
 
-const RatingItem = ({ icon, label, value, stars = 3 }: RatingItemProps) => {
-  const renderStars = (rating: number) => {
-    const yellowStars = Math.round(rating);
-    return (
-      <View className="flex-row">
-        {[...Array(5)].map((_, i) => (
-          <Star
-            key={i}
-            width={15}
-            height={15}
-            color={i < yellowStars ? "#F9D013" : "#C4C4C4"}
-          />
-        ))}
-      </View>
-    );
-  };
+const RatingItem = ({ icon, label, value, stars }: RatingItemProps) => {
   return (
     <View className="">
       <View className="flex-row items-center mb-1">
@@ -37,7 +22,7 @@ const RatingItem = ({ icon, label, value, stars = 3 }: RatingItemProps) => {
       <Text className="text-text-grey font-inter text-[13px] leading-[132%] mb-1">
         {label}
       </Text>
-      {renderStars(stars)}
+      <Stars rating={stars} size={16} />
     </View>
   );
 };
