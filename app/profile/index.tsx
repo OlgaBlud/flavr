@@ -9,7 +9,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 function ProfileScreen() {
   return (
-    <SafeAreaView className="flex-1  bg-white p-6">
+    <SafeAreaView className="flex-1  bg-white p-6" edges={["top"]}>
       {/* profile top bar */}
       <ProfileTopBar />
 
