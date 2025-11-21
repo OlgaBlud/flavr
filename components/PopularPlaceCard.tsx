@@ -11,6 +11,7 @@ import Like from "@/assets/icons/component-icons/Like";
 import Star from "@/assets/icons/component-icons/Star";
 import { popularPlaceProps } from "@/type";
 import { BlurView } from "expo-blur";
+import RestaurantTags from "./RestaurantTags";
 
 export default function PopularPlaceCard({
   image,
@@ -62,25 +63,12 @@ export default function PopularPlaceCard({
 
       {/* Info section */}
       <View className="mt-3">
-        <Text className="text-[14px]  leading-[17.36px] text-text-main font-poppins-medium">
+        <Text className="text-[14px]  leading-[17.36px] text-text-main font-poppins-medium mb-2">
           {name}
         </Text>
 
         {/* Tags */}
-        {tags && tags.length > 0 && (
-          <View className="flex-row flex-wrap items-center mt-2">
-            {tags.map((tag, index) => (
-              <View key={index} className="flex-row items-center">
-                <Text className="text-text-secondary text-[12px] font-normal font-poppins">
-                  {tag}
-                </Text>
-                {index < tags.length - 1 && (
-                  <View className="w-[4px] h-[4px] rounded-full bg-primary mx-2" />
-                )}
-              </View>
-            ))}
-          </View>
-        )}
+        <RestaurantTags tags={tags} />
       </View>
     </View>
   );

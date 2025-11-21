@@ -5,7 +5,7 @@ import Navigation from "@/assets/icons/component-icons/Navigation";
 import Phone from "@/assets/icons/component-icons/Phone";
 import Service from "@/assets/icons/component-icons/Service";
 import Star from "@/assets/icons/component-icons/Star";
-import { popularPlacesMock } from "@/mock-data/popularPlaces";
+import { popularPlacesMock } from "@/mock-data/places";
 import React from "react";
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import { GradientButton } from "./GradientButton";
@@ -55,7 +55,7 @@ function OverviewContent() {
       {/* // statistic */}
       <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
         <StatItem
-          icon={<Atmosphere width={22} height={21} />}
+          icon={<Atmosphere width={24} height={24} />}
           number={4.8}
           label="Atmosphere"
         />
@@ -65,7 +65,7 @@ function OverviewContent() {
           label="Service"
         />
         <StatItem
-          icon={<Food width={23} height={24} />}
+          icon={<Food width={24} height={24} />}
           number={4.9}
           label="Food"
         />

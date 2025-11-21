@@ -39,7 +39,7 @@ export default function ReviewItem({
           className="w-[32px] h-[32px] rounded-full"
           resizeMode="cover"
         />
-        <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] font-medium">
+        <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] ">
           {name}
         </Text>
       </View>
@@ -48,7 +48,7 @@ export default function ReviewItem({
       <View className="flex-row gap-4 mb-2">
         <View className="items-center w-16">
           <Food width={24} height={24} />
-          <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] font-medium">
+          <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] ">
             {food}
           </Text>
 
@@ -59,7 +59,7 @@ export default function ReviewItem({
         </View>
         <View className="items-center w-16">
           <Service width={24} height={24} />
-          <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] font-medium">
+          <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] ">
             {service}
           </Text>
           <Text className="text-text-grey font-inter text-[10px] leading-[132%]">
@@ -69,7 +69,7 @@ export default function ReviewItem({
         </View>
         <View className="items-center w-16">
           <Atmosphere width={24} height={24} />
-          <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] font-medium">
+          <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] ">
             {atmosphere}
           </Text>
           <Text className="text-text-grey font-inter text-[10px] leading-[132%]">

@@ -1,11 +1,16 @@
+import { mockPlaces } from "@/mock-data/places";
 import React from "react";
-import { Text, View } from "react-native";
+import { FlatList } from "react-native";
+import RestaurantCard from "./RestaurantCard";
 
 const ProfilePlacesList = () => {
   return (
-    <View className="h-40 justify-center items-center">
-      <Text>Add profile places list</Text>
-    </View>
+    <FlatList
+      data={mockPlaces}
+      renderItem={({ item }) => <RestaurantCard {...item} />}
+      keyExtractor={(item) => item.id}
+      showsVerticalScrollIndicator={false}
+    />
   );
 };
 

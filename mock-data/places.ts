@@ -1,0 +1,235 @@
+import { images } from "@/constants";
+
+export const popularPlaces = [
+  {
+    id: 1,
+    name: "Mario’s Pizza",
+    image: images.pp1,
+    tags: ["$$$", "Italian", "Pizza"],
+    rating: 4.8,
+    reviews: 543,
+  },
+  {
+    id: 2,
+    name: "Dolce Vita Café",
+    image: images.pp2,
+    tags: ["$$", "Desserts", "Coffee"],
+    rating: 4.7,
+    reviews: 410,
+  },
+  {
+    id: 3,
+    name: "Green Leaf",
+    image: images.pp1,
+    tags: ["Vegan friendly", "Healthy", "$$"],
+    rating: 4.9,
+    reviews: 289,
+  },
+  {
+    id: 4,
+    name: "Sushi World",
+    image: images.pp2,
+    tags: ["Japanese", "$$$", "Seafood"],
+    rating: 4.6,
+    reviews: 376,
+  },
+  {
+    id: 5,
+    name: "Burger Hub",
+    image: images.pp1,
+    tags: ["$$", "American", "Fast Food"],
+    rating: 4.5,
+    reviews: 623,
+  },
+];
+
+export const popularPlacesMock = [
+  {
+    id: 1,
+    name: "La Bella Napoli",
+    image: images.pp1,
+    rating: 4.8,
+    reviews: 543,
+    tags: ["$$", "Italian", "Pizza", "Desserts"],
+    liked: true,
+  },
+  {
+    id: 2,
+    name: "Sushi Corner",
+    image: images.pp2,
+    rating: 4.6,
+    reviews: 321,
+    tags: ["$$$", "Japanese", "Sushi"],
+    liked: false,
+  },
+  {
+    id: 3,
+    name: "Coffee Stories",
+    image: images.pp1,
+    rating: 4.9,
+    reviews: 812,
+    tags: ["$", "Cafe", "Desserts"],
+    liked: false,
+  },
+  {
+    id: 4,
+    name: "Vegan Planet",
+    image: images.pp2,
+    rating: 4.7,
+    reviews: 212,
+    tags: ["$$", "Healthy", "Vegan"],
+    liked: true,
+  },
+  {
+    id: 5,
+    name: "Urban Grill",
+    image: images.pp1,
+    rating: null, // ❌ немає рейтингу → покаже "/"
+    reviews: 0,
+    tags: [], // ❌ немає тегів → не рендеряться
+    liked: false,
+  },
+];
+
+export const mockPlaces = [
+  // {
+  //   id: "1",
+  //   name: "The Urban Grill",
+  //   image:
+  //     "https://images.unsplash.com/photo-1555992336-cbf1b5f75df0?auto=format&fit=crop&w=900&q=80",
+  //   ratings: {
+  //     food: 4.8,
+  //     service: 4.2,
+  //     atmosphere: 3.6,
+  //   },
+  //   reviewsCount: 245,
+  //   friendReviews: 3,
+  //   tags: ["$$", "American", "Steak", "Grill"],
+  // },
+  {
+    id: "2",
+    name: "La Bella Pasta",
+    image:
+      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=900&q=80",
+    ratings: {
+      food: 4.6,
+      service: 4.4,
+      atmosphere: 4.1,
+    },
+    reviewsCount: 321,
+    friendReviews: 1,
+    tags: ["$$", "Italian", "Pasta", "Wine"],
+  },
+  {
+    id: "3",
+    name: "Tokyo Sushi House",
+    image:
+      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80",
+    ratings: {
+      food: 4.9,
+      service: 4.5,
+      atmosphere: 4.2,
+    },
+    reviewsCount: 587,
+    friendReviews: 4,
+    tags: ["$$$", "Sushi", "Japanese", "Seafood"],
+  },
+  {
+    id: "4",
+    name: "Brew & Beans Coffee",
+    image:
+      "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=80",
+    ratings: {
+      food: 4.1,
+      service: 4.9,
+      atmosphere: 4.7,
+    },
+    reviewsCount: 198,
+    friendReviews: 0,
+    tags: ["$", "Coffee", "Desserts", "Bakery"],
+  },
+  {
+    id: "5",
+    name: "Green Garden Vegan",
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80",
+    ratings: {
+      food: 4.7,
+      service: 4.3,
+      atmosphere: 4.5,
+    },
+    reviewsCount: 351,
+    friendReviews: 2,
+    tags: ["$$", "Vegan", "Healthy", "Salads"],
+  },
+  // {
+  //   id: "6",
+  //   name: "Royal Tandoori",
+  //   image:
+  //     "https://images.unsplash.com/photo-1601050690597-dfbdc4c0ba36?auto=format&fit=crop&w=900&q=80",
+  //   ratings: {
+  //     food: 4.5,
+  //     service: 4.0,
+  //     atmosphere: 3.9,
+  //   },
+  //   reviewsCount: 410,
+  //   friendReviews: 0,
+  //   tags: ["$$", "Indian", "Curry", "Spicy"],
+  // },
+  {
+    id: "7",
+    name: "Sunset Burgers",
+    image:
+      "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80",
+    ratings: {
+      food: 4.3,
+      service: 4.1,
+      atmosphere: 3.8,
+    },
+    reviewsCount: 289,
+    friendReviews: 5,
+    tags: ["$", "Burgers", "Fast Food", "American"],
+  },
+  // {
+  //   id: "8",
+  //   name: "Dolce Vita Desserts",
+  //   image:
+  //     "https://images.unsplash.com/photo-1505253668822-42074d58a7a5?auto=format&fit=crop&w=900&q=80",
+  //   ratings: {
+  //     food: 4.9,
+  //     service: 4.7,
+  //     atmosphere: 4.6,
+  //   },
+  //   reviewsCount: 402,
+  //   friendReviews: 1,
+  //   tags: ["$$", "Desserts", "Coffee", "Cakes"],
+  // },
+  {
+    id: "9",
+    name: "Seaside Fish Bar",
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80",
+    ratings: {
+      food: 4.4,
+      service: 4.0,
+      atmosphere: 4.1,
+    },
+    reviewsCount: 338,
+    friendReviews: 2,
+    tags: ["$$$", "Seafood", "Fish", "European"],
+  },
+  {
+    id: "10",
+    name: "Café Morning Light",
+    image:
+      "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=900&q=80",
+    ratings: {
+      food: 4.2,
+      service: 4.8,
+      atmosphere: 4.9,
+    },
+    reviewsCount: 176,
+    friendReviews: 0,
+    tags: ["$", "Coffee", "Brunch", "Bakery"],
+  },
+];
