@@ -35,24 +35,24 @@ const RestaurantCard = ({
     <View
       className="bg-white rounded-[8px]  flex-row  "
       style={{
-        shadowColor: "#81553D",
+        shadowColor: "rgba(129, 85, 61, 0.08)",
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.08,
         shadowRadius: 20,
         elevation: 4,
       }}
     >
-      <View className="w-[111px] relative " style={{ aspectRatio: 111 / 159 }}>
+      <View className="w-[111px] relative" style={{ aspectRatio: 111 / 159 }}>
         <Image
           source={{ uri: image }}
           //   className="w-full h-full"
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 w-full h-full rounded-tl-[8px] rounded-bl-[8px]"
           resizeMode="cover"
         />
         <BlurView
           // need to change shadow
           intensity={Platform.OS === "ios" ? 30 : 100}
-          tint={Platform.OS === "ios" ? "default" : "light"}
+          tint={Platform.OS === "ios" ? "default" : "dark"}
           style={{
             position: "absolute",
             bottom: 4,

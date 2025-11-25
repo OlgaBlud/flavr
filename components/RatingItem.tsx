@@ -22,7 +22,7 @@ const RatingItem = ({ icon, label, value, stars }: RatingItemProps) => {
       <Text className="text-text-grey font-inter text-[13px] leading-[132%] mb-1">
         {label}
       </Text>
-      <Stars rating={stars} size={16} />
+      <Stars rating={stars} size={14} />
     </View>
   );
 };

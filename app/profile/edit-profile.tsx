@@ -1,12 +1,40 @@
 import ArrowLeft from "@/assets/icons/component-icons/ArrowLeft";
 import { GradientButton } from "@/components/GradientButton";
+import { logoutAppwrite } from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
 import { useRouter } from "expo-router";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Button, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function EditProfile() {
   const router = useRouter();
-  const { user } = useAuthStore();
+
+  const { user, setUser, setIsAuthenticated } = useAuthStore();
+
+  const handleLogout = async () => {
+    console.log("Logout initiated");
+    try {
+      await logoutAppwrite();
+      // console.log("logoutAppwrite");
+      setUser(null);
+      setIsAuthenticated(false);
+      // console.log("User after logout:", useAuthStore.getState().user);
+      // console.log(
+      //   "isAuthenticated after logout:",
+      //   useAuthStore.getState().isAuthenticated
+      // );
+      router.replace("/sign-in");
+    } catch (error) {
+      console.log("Logout error:", error);
+    }
+  };
+
+  if (!user) {
+    return (
+      <View>
+        <Text>No user logged in</Text>
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1 bg-white p-6 items-center justify-center">
@@ -17,9 +45,6 @@ export default function EditProfile() {
           onPress={() => router.back()}
         />
       </View>
-      <Text>
-        <Text>Edit My Profile Screen</Text>
-      </Text>
 
       <Text style={{ fontSize: 26, marginTop: 20 }}>Edit your profile</Text>
 
@@ -44,6 +69,17 @@ export default function EditProfile() {
           Save
         </Text>
       </TouchableOpacity>
+
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 20,
+        }}
+      >
+        <Text>Welcome, {user?.name}</Text>
+        <Button title="Logout" color="red" onPress={handleLogout} />
+      </View>
     </View>
   );
 }
