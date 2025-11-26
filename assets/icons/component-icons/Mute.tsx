@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
-const SVGComponent = ({
+const Mute = ({
   width = 16,
   height = 16,
   color = "currentColor",
@@ -15,4 +15,4 @@ const SVGComponent = ({
     />
   </Svg>
 );
-export default SVGComponent;
+export default Mute;
