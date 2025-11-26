@@ -1,14 +1,16 @@
 import React from "react";
 import {
-  ImageBackground,
-  Platform,
-  Text,
-  TouchableOpacity,
-  View,
+    ImageBackground,
+    Platform,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
+import Heart from "@/assets/icons/component-icons/Heart";
 import Like from "@/assets/icons/component-icons/Like";
 import Star from "@/assets/icons/component-icons/Star";
+import useWishlistStore from "@/store/wishlist.store";
 import { popularPlaceProps } from "@/type";
 import { BlurView } from "expo-blur";
 import RestaurantTags from "./RestaurantTags";
@@ -19,9 +21,27 @@ export default function PopularPlaceCard({
   rating,
   reviews = 0,
   tags,
+  friendsRating,
   onLike,
   liked = false,
+  id,
 }: popularPlaceProps) {
+  const isInWishlist = useWishlistStore((state) => state.isInWishlist(id));
+  const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
+
+  const handleToggleWishlist = () => {
+    toggleWishlist({ 
+      id, 
+      name, 
+      image, 
+      rating: rating ?? null, 
+      reviews: reviews ?? 0, 
+      tags: tags ?? [],
+      friendsRating: friendsRating ?? null
+    });
+    onLike?.();
+  };
+
   return (
     <View className="w-[200px] mr-4">
       {/* Image background */}
@@ -31,8 +51,12 @@ export default function PopularPlaceCard({
         resizeMode="cover"
       >
         {/* Like button */}
-        <TouchableOpacity onPress={onLike} className="self-end">
-          <Like width={16} height={16} color="white" />
+        <TouchableOpacity onPress={handleToggleWishlist} className="self-end">
+          {isInWishlist ? (
+            <Heart width={16} height={16} color="#F56005" />
+          ) : (
+            <Like width={16} height={16} color="white" />
+          )}
         </TouchableOpacity>
 
         {/* Rating */}

@@ -32,11 +32,13 @@ export type Tag = {
   label: string;
 };
 export type popularPlaceProps = {
+  id: number;
   image: any;
   name: string;
   rating?: number | null;
   reviews?: number;
   tags?: string[];
+  friendsRating?: number | null;
   onLike?: () => void;
   liked?: boolean;
 };

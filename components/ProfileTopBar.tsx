@@ -6,9 +6,12 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 
 const ProfileTopBar = () => {
   const { user } = useAuthStore();
-  //   console.log("JSON", JSON.stringify(user, null, 2));
-  //   {/* color: #121212; /* Header 2 */ font-family: Inter; font-size: 16px;
-  //   font-style: normal; font-weight: 600; line-height: 140%; /* */}
+
+  const handleAddStory = () => {
+    // TODO: Add story functionality
+    console.log("Add story");
+  };
+
   return (
     <View className="py-[8px]">
       <Text className="pb-4 font-inter-semibold text-[16px] leading-[140%] text-text-main ">
@@ -31,6 +34,7 @@ const ProfileTopBar = () => {
               shadowRadius: 8,
               elevation: 10,
             }}
+            onPress={handleAddStory}
           >
             <Plus color={"#121212"} />
           </TouchableOpacity>

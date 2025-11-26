@@ -1,14 +1,15 @@
 import * as Linking from "expo-linking";
 import { openAuthSessionAsync } from "expo-web-browser";
 import {
-  Account,
-  Avatars,
-  Client,
-  Databases,
-  ID,
-  OAuthProvider,
-  Query,
-  TablesDB,
+    Account,
+    Avatars,
+    Client,
+    Databases,
+    ID,
+    OAuthProvider,
+    Query,
+    Storage,
+    TablesDB,
 } from "react-native-appwrite";
 
 export const config = {
@@ -17,6 +18,7 @@ export const config = {
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
   databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID,
   usersTable: "users",
+  storageId: process.env.EXPO_PUBLIC_APPWRITE_STORAGE_ID || "avatars",
 };
 
 export const client = new Client();
@@ -29,6 +31,7 @@ export const avatar = new Avatars(client);
 export const account = new Account(client);
 export const databases = new Databases(client);
 export const tables = new TablesDB(client);
+export const storage = new Storage(client);
 
 // ------------------ REGISTER ------------------
 export async function signUpAppwrite(
@@ -131,10 +134,23 @@ export async function logoutAppwrite() {
 // ------------------ GET CURRENT USER ------------------
 export async function getCurrentUserAppwrite() {
   try {
-    const response = await account.get();
-    if (response.$id) {
-      const userAvatar = avatar.getInitialsURL(response.name);
-      return { ...response, avatar: userAvatar.toString() };
+    const accountData = await account.get();
+    if (accountData.$id) {
+      // Get user data from database
+      const userData = await getUserFromDatabase(accountData.$id);
+
+      if (userData) {
+        return {
+          $id: accountData.$id,
+          name: userData.userName || accountData.name,
+          email: userData.userEmail || accountData.email,
+          avatar: userData.avatar || avatar.getInitialsURL(accountData.name).toString(),
+        };
+      }
+
+      // Fallback if no database record
+      const userAvatar = avatar.getInitialsURL(accountData.name);
+      return { ...accountData, avatar: userAvatar.toString() };
     }
   } catch (error: any) {
     const isGuestError =
@@ -142,7 +158,7 @@ export async function getCurrentUserAppwrite() {
       error?.message?.includes("account");
 
     if (isGuestError) return null;
-    console.log("getCurrentUserAppwrite і", error);
+    console.log("getCurrentUserAppwrite", error);
     return null;
   }
 }
@@ -172,5 +188,115 @@ export async function createUserInDatabase(
   } catch (error) {
     console.log("CreateUserInDatabase error:", error);
     throw error;
+  }
+}
+
+// ------------------ UPLOAD AVATAR ------------------
+export async function uploadAvatar(uri: string, userId: string) {
+  try {
+    console.log("uploadAvatar - Starting upload for URI:", uri);
+    
+    // Get file info from URI
+    const filename = uri.split("/").pop() || `avatar_${Date.now()}.jpg`;
+    const match = /\.(\w+)$/.exec(filename);
+    const type = match ? `image/${match[1]}` : "image/jpeg";
+
+    console.log("uploadAvatar - File info:", { filename, type });
+
+    // Create file object
+    const file = {
+      uri,
+      name: filename,
+      type,
+    };
+
+    console.log("uploadAvatar - Uploading to bucket:", config.storageId);
+
+    // Upload to Appwrite Storage
+    const uploadedFile = await storage.createFile({
+      bucketId: config.storageId!,
+      fileId: ID.unique(),
+      file,
+    });
+
+    console.log("uploadAvatar - Upload successful, fileId:", uploadedFile.$id);
+
+    // Get file URL
+    const fileUrl = `${config.endpoint}/storage/buckets/${config.storageId}/files/${uploadedFile.$id}/view?project=${config.projectId}`;
+
+    console.log("uploadAvatar - File URL:", fileUrl);
+
+    return { fileId: uploadedFile.$id, fileUrl };
+  } catch (error: any) {
+    console.error("uploadAvatar error:", error);
+    console.error("uploadAvatar error message:", error?.message);
+    console.error("uploadAvatar error response:", error?.response);
+    throw error;
+  }
+}
+
+// ------------------ UPDATE USER PROFILE ------------------
+export async function updateUserProfile(
+  userId: string,
+  data: { userName?: string; avatar?: string }
+) {
+  try {
+    console.log("updateUserProfile - Starting update for userId:", userId);
+    console.log("updateUserProfile - Data to update:", data);
+
+    // Find user row in database
+    const existingUser = await tables.listRows({
+      databaseId: config.databaseId!,
+      tableId: config.usersTable!,
+      queries: [Query.equal("userId", userId)],
+    });
+
+    console.log("updateUserProfile - Found users:", existingUser.total);
+
+    if (existingUser.total === 0) {
+      console.error("updateUserProfile - User not found in database");
+      throw new Error("User not found in database");
+    }
+
+    const userRowId = existingUser.rows[0].$id;
+    console.log("updateUserProfile - User row ID:", userRowId);
+    console.log("updateUserProfile - Existing user data:", existingUser.rows[0]);
+
+    // Update user data
+    const updatedUser = await tables.updateRow({
+      databaseId: config.databaseId!,
+      tableId: config.usersTable!,
+      rowId: userRowId,
+      data,
+    });
+
+    console.log("updateUserProfile - Update successful");
+
+    return updatedUser;
+  } catch (error: any) {
+    console.error("updateUserProfile error:", error);
+    console.error("updateUserProfile error message:", error?.message);
+    console.error("updateUserProfile error response:", error?.response);
+    throw error;
+  }
+}
+
+// ------------------ GET USER FROM DATABASE ------------------
+export async function getUserFromDatabase(userId: string) {
+  try {
+    const response = await tables.listRows({
+      databaseId: config.databaseId!,
+      tableId: config.usersTable!,
+      queries: [Query.equal("userId", userId)],
+    });
+
+    if (response.total > 0) {
+      return response.rows[0];
+    }
+
+    return null;
+  } catch (error) {
+    console.log("getUserFromDatabase error:", error);
+    return null;
   }
 }
