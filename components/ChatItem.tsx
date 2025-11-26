@@ -2,7 +2,7 @@ import Dots3X from "@/assets/icons/component-icons/Dots3X";
 import { Chat } from "@/mock-data/messages";
 import { useChatMenuStore } from "@/store/chatMenu.store";
 import { router } from "expo-router";
-import React from "react";
+import React, { useRef } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 type ChatItemProps = {
   item: Chat;
@@ -10,6 +10,44 @@ type ChatItemProps = {
 
 const ChatItem = ({ item }: ChatItemProps) => {
   const openMenu = useChatMenuStore((state) => state.open);
+  // const menuButtonRef = useRef(null);
+
+  // const handleOpenMenu = () => {
+  //   const handle = findNodeHandle(menuButtonRef.current);
+
+  //   if (handle == null) return;
+  //   UIManager.measure(handle, (x, y, width, height, pageX, pageY) => {
+  //     openMenu(item.id, { x: pageX, y: pageY });
+  //   });
+  // };
+
+  const menuButtonRef = useRef<View>(null);
+
+  const handleOpenMenu = () => {
+    menuButtonRef.current?.measure(
+      (
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        pageX: number,
+        pageY: number
+      ) => {
+        console.log(
+          `📐 MEASURE:
+    x:      ${x}
+    y:      ${y}
+    width:  ${width}
+    height: ${height}
+    pageX:  ${pageX}
+    pageY:  ${pageY}
+  `
+        );
+        openMenu(item.id, { x: pageX, y: pageY });
+      }
+    );
+  };
+
   return (
     <View className="flex-row items-center pt-2 pb-4 border-b border-[#8282821A]">
       <TouchableOpacity
@@ -43,7 +81,8 @@ const ChatItem = ({ item }: ChatItemProps) => {
       </TouchableOpacity>
       {/* chat menu btn */}
       <TouchableOpacity
-        onPress={() => openMenu(item.id)}
+        ref={menuButtonRef}
+        onPress={handleOpenMenu}
         className=" items-center justify-center bg-white rounded-full w-[28px] h-[28px] "
         style={{
           transform: [{ rotate: "90deg" }],
