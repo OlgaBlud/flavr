@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
     fontFamily: "InterSemiBold",
   },
   row: {
-    gap: 8,
+    justifyContent: "flex-start",
+    gap: 6,
   },
   emptyContainer: {
     flex: 1,

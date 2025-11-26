@@ -38,6 +38,7 @@ export type popularPlaceProps = {
   rating?: number | null;
   reviews?: number;
   tags?: string[];
+  friendsRating?: number | null;
   onLike?: () => void;
   liked?: boolean;
 };

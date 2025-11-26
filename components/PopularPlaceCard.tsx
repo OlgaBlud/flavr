@@ -1,10 +1,10 @@
 import React from "react";
 import {
-  ImageBackground,
-  Platform,
-  Text,
-  TouchableOpacity,
-  View,
+    ImageBackground,
+    Platform,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
 import Heart from "@/assets/icons/component-icons/Heart";
@@ -21,6 +21,7 @@ export default function PopularPlaceCard({
   rating,
   reviews = 0,
   tags,
+  friendsRating,
   onLike,
   liked = false,
   id,
@@ -35,7 +36,8 @@ export default function PopularPlaceCard({
       image, 
       rating: rating ?? null, 
       reviews: reviews ?? 0, 
-      tags: tags ?? [] 
+      tags: tags ?? [],
+      friendsRating: friendsRating ?? null
     });
     onLike?.();
   };
