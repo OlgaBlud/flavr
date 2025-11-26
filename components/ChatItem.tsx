@@ -1,5 +1,6 @@
 import Dots3X from "@/assets/icons/component-icons/Dots3X";
 import { Chat } from "@/mock-data/messages";
+import { useChatMenuStore } from "@/store/chatMenu.store";
 import { router } from "expo-router";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
@@ -8,6 +9,7 @@ type ChatItemProps = {
 };
 
 const ChatItem = ({ item }: ChatItemProps) => {
+  const openMenu = useChatMenuStore((state) => state.open);
   return (
     <View className="flex-row items-center pt-2 pb-4 border-b border-[#8282821A]">
       <TouchableOpacity
@@ -39,7 +41,9 @@ const ChatItem = ({ item }: ChatItemProps) => {
           )}
         </View>
       </TouchableOpacity>
+      {/* chat menu btn */}
       <TouchableOpacity
+        onPress={() => openMenu(item.id)}
         className=" items-center justify-center bg-white rounded-full w-[28px] h-[28px] "
         style={{
           transform: [{ rotate: "90deg" }],
