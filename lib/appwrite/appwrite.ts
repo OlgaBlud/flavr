@@ -195,7 +195,12 @@ export async function createUserInDatabase(
 export async function uploadAvatar(uri: string, userId: string) {
   try {
     console.log("uploadAvatar - Starting upload for URI:", uri);
-    
+    console.log("uploadAvatar - Config:", {
+      endpoint: config.endpoint,
+      projectId: config.projectId,
+      storageId: config.storageId,
+    });
+
     // Get file info from URI
     const filename = uri.split("/").pop() || `avatar_${Date.now()}.jpg`;
     const match = /\.(\w+)$/.exec(filename);
@@ -203,23 +208,30 @@ export async function uploadAvatar(uri: string, userId: string) {
 
     console.log("uploadAvatar - File info:", { filename, type });
 
-    // Create file object
+    // For react-native-appwrite, we need to use InputFile
     const file = {
-      uri,
       name: filename,
-      type,
+      type: type,
+      size: 0, // Will be determined by the library
+      uri: uri,
     };
 
     console.log("uploadAvatar - Uploading to bucket:", config.storageId);
+    console.log("uploadAvatar - File object:", file);
 
     // Upload to Appwrite Storage
-    const uploadedFile = await storage.createFile({
-      bucketId: config.storageId!,
-      fileId: ID.unique(),
-      file,
-    });
+    const uploadedFile = await storage.createFile(
+      config.storageId!,
+      ID.unique(),
+      file
+    );
 
-    console.log("uploadAvatar - Upload successful, fileId:", uploadedFile.$id);
+    console.log("uploadAvatar - Upload successful:", uploadedFile);
+    console.log("uploadAvatar - File ID:", uploadedFile?.$id);
+
+    if (!uploadedFile || !uploadedFile.$id) {
+      throw new Error("Upload failed - no file ID returned");
+    }
 
     // Get file URL
     const fileUrl = `${config.endpoint}/storage/buckets/${config.storageId}/files/${uploadedFile.$id}/view?project=${config.projectId}`;
@@ -230,7 +242,8 @@ export async function uploadAvatar(uri: string, userId: string) {
   } catch (error: any) {
     console.error("uploadAvatar error:", error);
     console.error("uploadAvatar error message:", error?.message);
-    console.error("uploadAvatar error response:", error?.response);
+    console.error("uploadAvatar error code:", error?.code);
+    console.error("uploadAvatar error type:", error?.type);
     throw error;
   }
 }
