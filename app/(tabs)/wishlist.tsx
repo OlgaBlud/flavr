@@ -1,9 +1,23 @@
-import { Text, View } from "react-native";
+import WishlistList from "@/components/WishlistList";
+import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function WishlistScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Wishlist Tab</Text>
-    </View>
+    <SafeAreaView style={styles.container} edges={["top"]}>
+      <View style={styles.content}>
+        <WishlistList />
+      </View>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+  },
+  content: {
+    flex: 1,
+  },
+});

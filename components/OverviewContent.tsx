@@ -99,7 +99,7 @@ function OverviewContent() {
             horizontal
             data={popularPlacesMock}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <PopularPlaceCard {...item} />}
+            renderItem={({ item }) => <PopularPlaceCard key={`place-${item.id}`} {...item} />}
             showsHorizontalScrollIndicator={false}
           />
         </View>

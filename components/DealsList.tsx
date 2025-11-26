@@ -1,6 +1,6 @@
 import { Deal, mockDeals } from "@/mock-data/deals";
 import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import DealsItem from "./DealsItem";
 
 interface DealsListProps {
@@ -22,6 +22,9 @@ export default function DealsList({
         />
       )}
       keyExtractor={(item) => item.id}
+      ListHeaderComponent={() => (
+        <Text style={styles.header}>Deals</Text>
+      )}
       ItemSeparatorComponent={() => (
         <View style={styles.separator} />
       )}
@@ -37,6 +40,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     gap: 8,
     padding: 16,
+  },
+  header: {
+    fontSize: 16,
+    fontFamily: "InterSemiBold",
+    fontWeight: "600",
+    lineHeight: 22.4,
+    color: "#121212",
+    marginBottom: 16,
   },
   separator: {
     height: 1,
