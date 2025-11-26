@@ -1,31 +1,29 @@
-// type Position = { x: number; y: number };
-
 import { create } from "zustand";
 
+type Position = { x: number; y: number };
 type ChatMenuStore = {
   isOpen: boolean;
   activeChatId: string | null;
-  //   position: Position;
-  //   open: (chatId: string, pos: Position) => void;
-  open: (chatId: string) => void;
+  menuPosition: Position;
+  open: (chatId: string, menuPosition: Position) => void;
   close: () => void;
 };
 
 export const useChatMenuStore = create<ChatMenuStore>((set) => ({
   isOpen: false,
   activeChatId: null,
-  //   position: Position;
+  menuPosition: { x: 0, y: 0 },
   //   open: (chatId: string, pos: Position) => void;
-  open: (chatId: string) =>
+  open: (chatId: string, position) =>
     set({
       isOpen: true,
       activeChatId: chatId,
-      //  position: pos,
+      menuPosition: position,
     }),
   close: () =>
     set({
       isOpen: false,
       activeChatId: null,
-      //  position: pos,
+      menuPosition: { x: 0, y: 0 },
     }),
 }));

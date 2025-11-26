@@ -8,14 +8,16 @@ import { TouchableOpacity, View } from "react-native";
 import ChatMenuBtn from "./ChatMenuBtn";
 
 const ChatMenu = () => {
-  const { isOpen, activeChatId, close } = useChatMenuStore();
+  const { isOpen, activeChatId, close, menuPosition } = useChatMenuStore();
 
   if (!isOpen) return null;
   const actions = [
     {
       text: "Pin",
       icon: <Pin width={16} height={16} />,
-      onPress: () => console.log("Mute", activeChatId),
+      onPress: () => {
+        (console.log("Mute", activeChatId), console.log(menuPosition));
+      },
     },
     {
       text: "Move to General",
@@ -50,8 +52,11 @@ const ChatMenu = () => {
       }}
     >
       <View
-        className="absolute top-[80px] right-[30px] bg-white px-[16px] py-[12px] rounded-l-[16px] rounded-br-[16px] gap-4"
+        className=" bg-white px-[16px] py-[12px] rounded-l-[16px] rounded-br-[16px] gap-4"
         style={{
+          position: "absolute",
+          top: menuPosition.y - 210,
+          left: menuPosition.x - 180,
           shadowColor: "#000",
           shadowOffset: { width: 0, height: 4 },
           shadowOpacity: 0.15,
