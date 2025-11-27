@@ -97,6 +97,13 @@ export default function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="place/[id]"
+        options={{
+          href: null,
+          title: "",
+        }}
+      />
     </Tabs>
   );
 }

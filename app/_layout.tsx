@@ -39,16 +39,13 @@ export default function RootLayout() {
         contentStyle: { backgroundColor: "#fff" },
       }}
     >
-      <Stack.Screen 
-        name="(tabs)" 
-        options={{ headerShown: false }} 
-      />
-      <Stack.Screen 
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      {/* <Stack.Screen 
         name="restaurant/[id]" 
         options={{ 
           headerShown: false,
         }} 
-      />
+      /> */}
     </Stack>
   );
 }

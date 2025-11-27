@@ -36,7 +36,7 @@ export default function RestaurantDetailsScreen() {
   }
 
   return (
-    <View className="flex-1 ">
+    <View className="flex-1">
       <ImageBackground
         style={{
           position: "absolute",

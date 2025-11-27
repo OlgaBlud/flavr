@@ -7,29 +7,31 @@ import { Restaurant } from "@/mock-data/restaurants";
 import { Href, useRouter } from "expo-router";
 import React from "react";
 import {
-    ImageBackground,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 interface RestaurantListItemProps {
   restaurant: Restaurant;
 }
 
-export default function RestaurantListItem({ restaurant }: RestaurantListItemProps) {
+export default function RestaurantListItem({
+  restaurant,
+}: RestaurantListItemProps) {
   const router = useRouter();
 
   const handlePress = () => {
-    router.push(`/restaurant/${restaurant.id}?source=list` as Href);
+    router.push(`/place/${restaurant.id}?source=list` as Href);
   };
 
   // Render star rating
   const renderStars = (rating: number) => {
     const stars = [];
     const fullStars = Math.floor(rating);
-    
+
     for (let i = 1; i <= 5; i++) {
       if (i <= fullStars) {
         stars.push(<Star key={i} width={12} height={12} color="#F9D013" />);
@@ -41,8 +43,8 @@ export default function RestaurantListItem({ restaurant }: RestaurantListItemPro
   };
 
   return (
-    <TouchableOpacity 
-      style={styles.container} 
+    <TouchableOpacity
+      style={styles.container}
       onPress={handlePress}
       activeOpacity={0.8}
     >
@@ -52,9 +54,9 @@ export default function RestaurantListItem({ restaurant }: RestaurantListItemPro
         style={styles.imageBackground}
         imageStyle={styles.image}
       >
-        <RatingCard 
-          rating={restaurant.rating} 
-          friendsRating={restaurant.friendsRating} 
+        <RatingCard
+          rating={restaurant.rating}
+          friendsRating={restaurant.friendsRating}
         />
       </ImageBackground>
 
@@ -73,7 +75,9 @@ export default function RestaurantListItem({ restaurant }: RestaurantListItemPro
               <View style={styles.ratingItem}>
                 <View style={styles.ratingHeader}>
                   <Atmosphere width={20} height={20} color="#FF9500" />
-                  <Text style={styles.ratingValue}>{restaurant.atmosphere}</Text>
+                  <Text style={styles.ratingValue}>
+                    {restaurant.atmosphere}
+                  </Text>
                 </View>
                 <Text style={styles.ratingLabel}>Atmosphere</Text>
                 <View style={styles.stars}>
@@ -104,9 +108,7 @@ export default function RestaurantListItem({ restaurant }: RestaurantListItemPro
                   <Text style={styles.ratingValue}>{restaurant.food}</Text>
                 </View>
                 <Text style={styles.ratingLabel}>Food</Text>
-                <View style={styles.stars}>
-                  {renderStars(restaurant.food)}
-                </View>
+                <View style={styles.stars}>{renderStars(restaurant.food)}</View>
               </View>
             )}
           </View>
@@ -126,9 +128,7 @@ export default function RestaurantListItem({ restaurant }: RestaurantListItemPro
 
         {/* Reviews */}
         <TouchableOpacity style={styles.reviewsButton}>
-          <Text style={styles.reviewsText}>
-            Reviews ({restaurant.reviews})
-          </Text>
+          <Text style={styles.reviewsText}>Reviews ({restaurant.reviews})</Text>
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
