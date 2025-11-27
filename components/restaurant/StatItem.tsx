@@ -1,0 +1,67 @@
+import Star from "@/assets/icons/Star";
+import { StatItemProps } from "@/type";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+
+export default function StatItem({ icon, number, label }: StatItemProps) {
+  const isReactElement = React.isValidElement(icon);
+
+  return (
+    <View style={styles.container}>
+      {isReactElement ? (
+        <View style={styles.iconTop}>{icon}</View>
+      ) : (
+        <Image source={icon} style={styles.iconTop} resizeMode="contain" />
+      )}
+      <View style={styles.numberWrap}>
+        <Text style={styles.number}>{number}</Text>
+        <Star width={10} height={10} color="#F9D013" />
+      </View>
+      <Text style={styles.label}>{label}</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "rgba(129, 85, 61, 0.08)",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 20,
+    elevation: 4,
+  },
+  iconTop: {
+    width: 23,
+    height: 23,
+    marginBottom: 4,
+  },
+  numberWrap: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  number: {
+    fontFamily: "PoppinsMedium",
+    color: "#121212",
+    fontSize: 12,
+    fontWeight: "500",
+    wordWrap: "break-word",
+  },
+
+  label: {
+    // Atmosphere
+    color: "#6D6D6D",
+    fontSize: 10,
+    fontFamily: "InterRegular",
+    fontWeight: "400",
+    lineHeight: 13.2,
+    wordWrap: "break-word",
+  },
+});

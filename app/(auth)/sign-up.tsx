@@ -1,23 +1,23 @@
-import AuthInput from "@/components/AuthInput";
-import { GradientButton } from "@/components/GradientButton";
-import { SolidButton } from "@/components/SolidButton";
+import AuthInput from "@/components/auth/AuthInput";
+import { GradientButton } from "@/components/ui/GradientButton";
+import { SolidButton } from "@/components/ui/SolidButton";
 import { signUpAppwrite } from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
 
 import {
-  validateConfirmPassword,
-  validateEmail,
-  validateName,
-  validatePassword,
+    validateConfirmPassword,
+    validateEmail,
+    validateName,
+    validatePassword,
 } from "@/utils/validation";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
-  Alert,
-  Keyboard,
-  ScrollView,
-  TouchableWithoutFeedback,
-  View,
+    Alert,
+    Keyboard,
+    ScrollView,
+    TouchableWithoutFeedback,
+    View,
 } from "react-native";
 
 export default function SignUp() {

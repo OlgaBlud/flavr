@@ -1,4 +1,4 @@
-import DealsList from "@/components/DealsList";
+import DealsList from "@/components/deals/DealsList";
 import { Deal } from "@/mock-data/deals";
 import { Alert, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";

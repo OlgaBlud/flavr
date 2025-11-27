@@ -1,8 +1,8 @@
-import ProfileInnerTabs from "@/components/ProfileInnerTabs";
-import ProfileMainBtns from "@/components/ProfileMainBtns";
-import ProfileTopBar from "@/components/ProfileTopBar";
-import StoryCollectionAddBtn from "@/components/StoryCollectionAddBtn";
-import StoryCollections from "@/components/StoryCollections";
+import ProfileInnerTabs from "@/components/profile/ProfileInnerTabs";
+import ProfileMainBtns from "@/components/profile/ProfileMainBtns";
+import ProfileTopBar from "@/components/profile/ProfileTopBar";
+import StoryCollectionAddBtn from "@/components/profile/StoryCollectionAddBtn";
+import StoryCollections from "@/components/profile/StoryCollections";
 import { storyCollections } from "@/mock-data/storyCollections";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";

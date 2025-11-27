@@ -1,7 +1,7 @@
-import Facebook from "@/assets/icons/component-icons/Facebook";
-import Google from "@/assets/icons/component-icons/Google";
-import Mail from "@/assets/icons/component-icons/Mail";
-import LoginBtn from "@/components/LoginBtn";
+import Facebook from "@/assets/icons/Facebook";
+import Google from "@/assets/icons/Google";
+import Mail from "@/assets/icons/Mail";
+import LoginBtn from "@/components/auth/LoginBtn";
 import { loginGoogleAppwrite } from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
 
