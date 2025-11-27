@@ -66,7 +66,7 @@ export default function RestaurantDetailsScreen() {
                 onPress={() => setActiveTab("Overview")}
               />
               <TabButton
-                title="Review"
+                title={`Reviews (${restaurant.reviews})`}
                 isActive={activeTab === "Review"}
                 onPress={() => setActiveTab("Review")}
               />
@@ -104,7 +104,12 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(29, 27, 32, 0.24)",
+    backgroundColor: "rgba(255, 255, 255, 0.33)",
+    shadowColor: "rgba(174, 173, 173, 0.15)",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 27,
+    elevation: 8,
   },
   reviewWrap: {
     flexDirection: "row",
@@ -112,7 +117,12 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingVertical: 4,
     paddingHorizontal: 4,
-    backgroundColor: "rgba(29, 27, 32, 0.24)",
+    backgroundColor: "rgba(255, 255, 255, 0.33)",
     borderRadius: 24,
+    shadowColor: "rgba(174, 173, 173, 0.15)",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 27,
+    elevation: 8,
   },
 });

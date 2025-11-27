@@ -12,7 +12,7 @@ export function GradientButton({
   const isReactElement = React.isValidElement(icon);
 
   return (
-    <TouchableOpacity onPress={onPress} style={{ width: 87 }}>
+    <TouchableOpacity onPress={onPress}>
       <View className="rounded-full overflow-hidden" style={{ height: 38 }}>
         <LinearGradient
           colors={["#FF9500", "#F45905"]}

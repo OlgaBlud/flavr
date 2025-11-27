@@ -15,7 +15,7 @@ export default function WishlistList({
     <FlatList
       data={wishlist}
       renderItem={({ item }) => (
-        <WishlistItem place={item} onPress={() => onPlacePress?.(item)} />
+        <WishlistItem place={item} onPress={onPlacePress ? () => onPlacePress(item) : undefined} />
       )}
       keyExtractor={(item) => item.id.toString()}
       numColumns={3}

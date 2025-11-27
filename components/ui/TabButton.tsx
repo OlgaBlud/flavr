@@ -50,18 +50,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   activeText: {
-    fontFamily: "PoppinsSemiBold",
+    fontFamily: "PoppinsBold",
     fontWeight: "700",
     fontSize: 14,
-    letterSpacing: -0.3,
     color: "#fff",
     lineHeight: 20,
   },
   defaultText: {
     fontFamily: "PoppinsRegular",
     fontWeight: "400",
-    fontSize: 16,
+    fontSize: 14,
+    letterSpacing: -0.28,
     color: "#fff",
-    lineHeight: 30,
+    lineHeight: 20,
   },
 });

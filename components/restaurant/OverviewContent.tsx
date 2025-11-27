@@ -96,22 +96,24 @@ function OverviewContent({ restaurant }: OverviewContentProps) {
       </View>
       {/* buttons */}
       <View style={styles.buttonsRow}>
-        <GradientButton
-          text="Call"
-          icon={<Phone width={16} height={16} color="white" />}
-          onPress={() => {}}
-        />
-        <View style={{ flex: 1 }}>
+        <View style={styles.callButton}>
+          <GradientButton
+            text="Call"
+            icon={<Phone width={16} height={16} color="white" />}
+            onPress={() => {}}
+          />
+        </View>
+        <View style={styles.navigateButton}>
           <SolidButton
             text="Navigate"
             icon={<Navigation width={16} height={16} />}
             onPress={() => {}}
           />
         </View>
-        <View style={{ flex: 1 }}>
+        <View style={styles.wishlistButton}>
           <SolidButton
-            text={inWishlist ? "Remove" : "Wishlist"}
-            icon={<AddWishlist width={16} height={16} />}
+            text={inWishlist ? "Remove from WL" : "Add to Wishlist"}
+            icon={<AddWishlist width={16} height={16} color={inWishlist ? "#FF0000" : "#F56005"} />}
             onPress={handleWishlistToggle}
           />
         </View>
@@ -225,5 +227,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 8,
     marginBottom: 16,
+  },
+  callButton: {
+    minWidth: 87,
+  },
+  navigateButton: {
+    width: "100%",
+    maxWidth: 120,
+  },
+  wishlistButton: {
+    flex: 1,
+    minWidth: 131,
   },
 });

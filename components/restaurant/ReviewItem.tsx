@@ -30,32 +30,37 @@ export default function ReviewItem({
 
       {/* Показники */}
       <View className="flex-row gap-4 mb-2">
-        <View className="items-center w-16">
-          <Food width={24} height={24} />
-          <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] ">
-            {food}
-          </Text>
-
+        <View className="w-16">
+          <View className="flex-row items-center gap-1 mb-1">
+            <Food width={24} height={24} />
+            <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] ">
+              {food}
+            </Text>
+          </View>
           <Text className="text-text-grey font-inter text-[10px] leading-[132%]">
             Food
           </Text>
           <Stars rating={food} size={10} />
         </View>
-        <View className="items-center w-16">
-          <Service width={24} height={24} />
-          <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] ">
-            {service}
-          </Text>
+        <View className="w-16">
+          <View className="flex-row items-center gap-1 mb-1">
+            <Service width={24} height={24} />
+            <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] ">
+              {service}
+            </Text>
+          </View>
           <Text className="text-text-grey font-inter text-[10px] leading-[132%]">
             Service
           </Text>
           <Stars rating={service} size={10} />
         </View>
-        <View className="items-center w-16">
-          <Atmosphere width={24} height={24} />
-          <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] ">
-            {atmosphere}
-          </Text>
+        <View className="w-16">
+          <View className="flex-row items-center gap-1 mb-1">
+            <Atmosphere width={24} height={24} />
+            <Text className="text-text-main text-[12px] font-poppins-medium tracking-[-0.3px] ">
+              {atmosphere}
+            </Text>
+          </View>
           <Text className="text-text-grey font-inter text-[10px] leading-[132%]">
             Atmosphere
           </Text>
