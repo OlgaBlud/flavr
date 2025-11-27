@@ -1,8 +1,8 @@
-import Facebook from "@/assets/icons/component-icons/Facebook";
-import Google from "@/assets/icons/component-icons/Google";
-import AuthInput from "@/components/AuthInput";
-import { GradientButton } from "@/components/GradientButton";
-import LoginBtn from "@/components/LoginBtn";
+import Facebook from "@/assets/icons/Facebook";
+import Google from "@/assets/icons/Google";
+import AuthInput from "@/components/auth/AuthInput";
+import LoginBtn from "@/components/auth/LoginBtn";
+import { GradientButton } from "@/components/ui/GradientButton";
 import { loginEmailAppwrite } from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
 

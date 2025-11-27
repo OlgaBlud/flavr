@@ -1,15 +1,15 @@
 import * as Linking from "expo-linking";
 import { openAuthSessionAsync } from "expo-web-browser";
 import {
-    Account,
-    Avatars,
-    Client,
-    Databases,
-    ID,
-    OAuthProvider,
-    Query,
-    Storage,
-    TablesDB,
+  Account,
+  Avatars,
+  Client,
+  Databases,
+  ID,
+  OAuthProvider,
+  Query,
+  Storage,
+  TablesDB,
 } from "react-native-appwrite";
 
 export const config = {
@@ -192,14 +192,8 @@ export async function createUserInDatabase(
 }
 
 // ------------------ UPLOAD AVATAR ------------------
-export async function uploadAvatar(uri: string, userId: string) {
+export const uploadAvatar = async (uri: string, userId: string) => {
   try {
-    console.log("uploadAvatar - Starting upload for URI:", uri);
-    console.log("uploadAvatar - Config:", {
-      endpoint: config.endpoint,
-      projectId: config.projectId,
-      storageId: config.storageId,
-    });
 
     // Get file info from URI
     const filename = uri.split("/").pop() || `avatar_${Date.now()}.jpg`;
@@ -216,18 +210,12 @@ export async function uploadAvatar(uri: string, userId: string) {
       uri: uri,
     };
 
-    console.log("uploadAvatar - Uploading to bucket:", config.storageId);
-    console.log("uploadAvatar - File object:", file);
-
     // Upload to Appwrite Storage
     const uploadedFile = await storage.createFile(
       config.storageId!,
       ID.unique(),
       file
     );
-
-    console.log("uploadAvatar - Upload successful:", uploadedFile);
-    console.log("uploadAvatar - File ID:", uploadedFile?.$id);
 
     if (!uploadedFile || !uploadedFile.$id) {
       throw new Error("Upload failed - no file ID returned");
@@ -246,7 +234,7 @@ export async function uploadAvatar(uri: string, userId: string) {
     console.error("uploadAvatar error type:", error?.type);
     throw error;
   }
-}
+};
 
 // ------------------ UPDATE USER PROFILE ------------------
 export async function updateUserProfile(
@@ -262,9 +250,7 @@ export async function updateUserProfile(
       databaseId: config.databaseId!,
       tableId: config.usersTable!,
       queries: [Query.equal("userId", userId)],
-    });
-
-    console.log("updateUserProfile - Found users:", existingUser.total);
+    }   );
 
     if (existingUser.total === 0) {
       console.error("updateUserProfile - User not found in database");
@@ -272,8 +258,6 @@ export async function updateUserProfile(
     }
 
     const userRowId = existingUser.rows[0].$id;
-    console.log("updateUserProfile - User row ID:", userRowId);
-    console.log("updateUserProfile - Existing user data:", existingUser.rows[0]);
 
     // Update user data
     const updatedUser = await tables.updateRow({

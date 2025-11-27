@@ -1,5 +1,5 @@
-import ArrowLeft from "@/assets/icons/component-icons/ArrowLeft";
-import { GradientButton } from "@/components/GradientButton";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
+import { GradientButton } from "@/components/ui/GradientButton";
 import { logoutAppwrite, updateUserProfile, uploadAvatar } from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
 import * as ImagePicker from "expo-image-picker";
@@ -59,14 +59,11 @@ export default function EditProfile() {
       
       let avatarUrl = user.avatar;
 
-      // Upload new avatar if changed
+      // Upload avatar if changed
       if (avatar !== user.avatar) {
-        console.log("handleSave - Avatar changed, uploading...");
         const { fileUrl } = await uploadAvatar(avatar, user.$id);
         avatarUrl = fileUrl;
-        console.log("handleSave - Avatar uploaded:", avatarUrl);
       } else {
-        console.log("handleSave - Avatar not changed");
       }
 
       // Update profile in Appwrite
@@ -102,7 +99,6 @@ export default function EditProfile() {
   };
 
   const handleLogout = async () => {
-    console.log("Logout initiated");
     try {
       await logoutAppwrite();
       // console.log("logoutAppwrite");
@@ -114,8 +110,8 @@ export default function EditProfile() {
       //   useAuthStore.getState().isAuthenticated
       // );
       router.replace("/sign-in");
-    } catch (error) {
-      console.log("Logout error:", error);
+    } catch {
+      // Error handling if needed
     }
   };
 

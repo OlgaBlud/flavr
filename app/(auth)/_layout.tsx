@@ -1,5 +1,5 @@
-import Flavr from "@/assets/icons/component-icons/Flavr";
-import Logo from "@/assets/icons/component-icons/Logo";
+import Flavr from "@/assets/icons/Flavr";
+import Logo from "@/assets/icons/Logo";
 import { images } from "@/constants";
 import useAuthStore from "@/store/auth.store";
 
@@ -12,7 +12,6 @@ import {
 } from "react-native";
 
 export default function AuthLayout() {
-  console.log("Rendering AuthLayout");
   const { isAuthenticated } = useAuthStore();
   if (isAuthenticated) return <Redirect href="/" />;
 

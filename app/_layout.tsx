@@ -6,7 +6,6 @@ import { ActivityIndicator, View } from "react-native";
 import "./global.css";
 
 export default function RootLayout() {
-  console.log(" Rendering Root Layout");
   const { fetchAuthenticatedUser, isLoading, user } = useAuthStore();
   const [fontsLoaded, error] = useFonts({
     PoppinsMedium: require("../assets/fonts/Poppins-Medium.ttf"),
@@ -22,7 +21,6 @@ export default function RootLayout() {
   }, [error]);
 
   useEffect(() => {
-    console.log("Start fetch AuthenticatedUser Root Layout");
     fetchAuthenticatedUser();
   }, []);
 

@@ -1,4 +1,4 @@
-import WishlistList from "@/components/WishlistList";
+import WishlistList from "@/components/wishlist/WishlistList";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { StyleSheet, View } from "react-native";

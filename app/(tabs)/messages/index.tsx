@@ -1,8 +1,7 @@
-import MessagesFilter from "@/components/MessagesFilter";
-import MessagesList from "@/components/MessagesList";
-import MessagesSearch from "@/components/MessagesSearch";
-import MessagesTopBar from "@/components/MessagesTopBar";
-
+import MessagesFilter from "@/components/messages/MessagesFilter";
+import MessagesList from "@/components/messages/MessagesList";
+import MessagesSearch from "@/components/messages/MessagesSearch";
+import MessagesTopBar from "@/components/messages/MessagesTopBar";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function MessagesScreen() {
