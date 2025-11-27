@@ -21,7 +21,7 @@ export default function RestaurantDetailsScreen() {
   const { width } = Dimensions.get("window");
   const [activeTab, setActiveTab] = useState("Overview");
   const router = useRouter();
-  const { id } = useLocalSearchParams();
+  const { id, source } = useLocalSearchParams();
 
   // Load restaurant data by id
   const restaurantId = typeof id === "string" ? parseInt(id) : Number(id);
@@ -53,7 +53,13 @@ export default function RestaurantDetailsScreen() {
           <BlurView className="rounded-full overflow-hidden">
             <TouchableOpacity
               style={styles.btnWrap}
-              onPress={() => router.back()}
+              onPress={() => {
+                if (source === 'map') {
+                  router.push('/(tabs)');
+                } else {
+                  router.back();
+                }
+              }}
             >
               <ArrowLeft width={20} height={20} color="white" />
             </TouchableOpacity>

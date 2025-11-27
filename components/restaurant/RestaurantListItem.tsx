@@ -22,7 +22,7 @@ export default function RestaurantListItem({ restaurant }: RestaurantListItemPro
   const router = useRouter();
 
   const handlePress = () => {
-    router.push(`/restaurant/${restaurant.id}` as Href);
+    router.push(`/restaurant/${restaurant.id}?source=list` as Href);
   };
 
   // Render star rating

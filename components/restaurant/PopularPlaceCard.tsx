@@ -45,7 +45,7 @@ export default function PopularPlaceCard({
   };
 
   const handlePress = () => {
-    router.push(`/restaurant/${id}`);
+    router.push(`/restaurant/${id}?source=map`);
   };
 
   return (
