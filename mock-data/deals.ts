@@ -5,7 +5,7 @@ export interface Deal {
   subtitle: string;
   promoText: string;
   ctaText: string;
-  image: any;
+  image: string;
   timeRange: string;
 }
 
@@ -17,7 +17,7 @@ export const mockDeals: Deal[] = [
     subtitle: "20% off all cocktails from 5 PM to 7 PM",
     promoText: "20%",
     ctaText: "Get Your Drink Now!",
-    image: require("@/assets/media/pp-1.png"),
+    image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400&q=80",
     timeRange: "5 PM to 7 PM",
   },
   {
@@ -27,7 +27,7 @@ export const mockDeals: Deal[] = [
     subtitle: "Buy one, get one free on all pizzas from 12 PM to 3 PM",
     promoText: "BOGO",
     ctaText: "Claim Your Pizza!",
-    image: require("@/assets/media/pp-2.png"),
+    image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80",
     timeRange: "12 PM to 3 PM",
   },
   {
@@ -37,7 +37,7 @@ export const mockDeals: Deal[] = [
     subtitle: "Enjoy 3 tapas for the price of 2 between 4 PM and 6 PM",
     promoText: "3 for 2",
     ctaText: "Grab This Deal!",
-    image: require("@/assets/media/cafe.jpg"),
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&q=80",
     timeRange: "4 PM to 6 PM",
   },
   {
@@ -47,7 +47,7 @@ export const mockDeals: Deal[] = [
     subtitle: "Get 30% off burgers from 6 PM to 9 PM",
     promoText: "30%",
     ctaText: "Get Your Burger!",
-    image: require("@/assets/media/pp-1.png"),
+    image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
     timeRange: "6 PM to 9 PM",
   },
   {
@@ -57,7 +57,7 @@ export const mockDeals: Deal[] = [
     subtitle: "All-you-can-eat sushi rolls for $25 from 11 AM to 2 PM",
     promoText: "$25",
     ctaText: "Reserve Your Spot!",
-    image: require("@/assets/media/pp-2.png"),
+    image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=400&q=80",
     timeRange: "11 AM to 2 PM",
   },
   {
@@ -67,7 +67,7 @@ export const mockDeals: Deal[] = [
     subtitle: "50% off all steaks every Tuesday from 5 PM to 10 PM",
     promoText: "50%",
     ctaText: "Book Now!",
-    image: require("@/assets/media/cafe.jpg"),
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80",
     timeRange: "5 PM to 10 PM",
   },
   {
@@ -77,7 +77,7 @@ export const mockDeals: Deal[] = [
     subtitle: "$1 tacos all day long on Tuesdays",
     promoText: "$1",
     ctaText: "Get Your Tacos!",
-    image: require("@/assets/media/pp-1.png"),
+    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80",
     timeRange: "All Day",
   },
   {
@@ -87,7 +87,7 @@ export const mockDeals: Deal[] = [
     subtitle: "Free mimosas with any brunch entrée on weekends",
     promoText: "FREE",
     ctaText: "Claim Your Brunch!",
-    image: require("@/assets/media/pp-2.png"),
+    image: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?w=400&q=80",
     timeRange: "10 AM to 3 PM",
   },
   {
@@ -97,7 +97,7 @@ export const mockDeals: Deal[] = [
     subtitle: "20% off all dim sum dishes from 1 PM to 4 PM",
     promoText: "20%",
     ctaText: "Order Now!",
-    image: require("@/assets/media/cafe.jpg"),
+    image: "https://images.unsplash.com/photo-1496318447583-f524534e9ce1?w=400&q=80",
     timeRange: "1 PM to 4 PM",
   },
   {
@@ -107,7 +107,7 @@ export const mockDeals: Deal[] = [
     subtitle: "$1 oysters from 4 PM to 6 PM daily",
     promoText: "$1",
     ctaText: "Shuck 'Em Now!",
-    image: require("@/assets/media/pp-1.png"),
+    image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80",
     timeRange: "4 PM to 6 PM",
   },
   {
@@ -117,7 +117,7 @@ export const mockDeals: Deal[] = [
     subtitle: "Buy any pasta, get a free dessert from 6 PM to 9 PM",
     promoText: "FREE",
     ctaText: "Grab This Offer!",
-    image: require("@/assets/media/pp-2.png"),
+    image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&q=80",
     timeRange: "6 PM to 9 PM",
   },
   {
@@ -127,7 +127,7 @@ export const mockDeals: Deal[] = [
     subtitle: "Family platter for 4 only $49.99 on weekends",
     promoText: "$49.99",
     ctaText: "Feed the Family!",
-    image: require("@/assets/media/cafe.jpg"),
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80",
     timeRange: "All Day",
   },
   {
@@ -137,7 +137,7 @@ export const mockDeals: Deal[] = [
     subtitle: "25% off all vegan dishes from 12 PM to 8 PM",
     promoText: "25%",
     ctaText: "Go Green Today!",
-    image: require("@/assets/media/pp-1.png"),
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
     timeRange: "12 PM to 8 PM",
   },
   {
@@ -147,7 +147,7 @@ export const mockDeals: Deal[] = [
     subtitle: "Half-price bottles of wine with any dinner entrée",
     promoText: "50%",
     ctaText: "Sip & Save!",
-    image: require("@/assets/media/pp-2.png"),
+    image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
     timeRange: "5 PM to 11 PM",
   },
 ];

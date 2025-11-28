@@ -1,10 +1,10 @@
 import React from "react";
 import {
-  ImageBackground,
-  Platform,
-  Text,
-  TouchableOpacity,
-  View,
+    ImageBackground,
+    Platform,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
 import Heart from "@/assets/icons/Heart";
@@ -56,7 +56,7 @@ export default function PopularPlaceCard({
     >
       {/* Image background */}
       <ImageBackground
-        source={image}
+        source={{ uri: image }}
         className="h-[92px] rounded-lg overflow-hidden justify-between p-3"
         resizeMode="cover"
       >

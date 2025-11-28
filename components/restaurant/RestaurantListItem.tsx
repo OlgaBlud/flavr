@@ -50,9 +50,8 @@ export default function RestaurantListItem({
     >
       {/* Image on the left */}
       <ImageBackground
-        source={restaurant.image}
+        source={{ uri: restaurant.image }}
         style={styles.imageBackground}
-        imageStyle={styles.image}
       >
         <RatingCard
           rating={restaurant.rating}
