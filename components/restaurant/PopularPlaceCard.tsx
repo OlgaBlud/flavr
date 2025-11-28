@@ -32,24 +32,28 @@ export default function PopularPlaceCard({
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
 
   const handleToggleWishlist = () => {
-    toggleWishlist({ 
-      id, 
-      name, 
-      image, 
-      rating: rating ?? null, 
-      reviews: reviews ?? 0, 
+    toggleWishlist({
+      id,
+      name,
+      image,
+      rating: rating ?? null,
+      reviews: reviews ?? 0,
       tags: tags ?? [],
-      friendsRating: friendsRating ?? null
+      friendsRating: friendsRating ?? null,
     });
     onLike?.();
   };
 
   const handlePress = () => {
-    router.push(`/restaurant/${id}?source=map`);
+    router.push(`/home/${id}?source=map`);
   };
 
   return (
-    <TouchableOpacity className="w-[200px] mr-4" onPress={handlePress} activeOpacity={0.8}>
+    <TouchableOpacity
+      className="w-[200px] mr-4"
+      onPress={handlePress}
+      activeOpacity={0.8}
+    >
       {/* Image background */}
       <ImageBackground
         source={image}
