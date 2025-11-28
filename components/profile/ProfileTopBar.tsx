@@ -11,10 +11,14 @@ const ProfileTopBar = () => {
     // TODO: Add story functionality
   };
 
+  if (!user) {
+    return null;
+  }
+
   return (
     <View className="py-2">
       <Text className="pb-4 font-inter-semibold text-[16px] leading-[140%] text-text-main ">
-        {user!.name}
+        {user.name}
       </Text>
       <View className="flex-row items-center ">
         {/* avatar wrap */}
