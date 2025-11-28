@@ -12,7 +12,7 @@ const ProfileTopBar = () => {
   };
 
   return (
-    <View className="py-[8px]">
+    <View className="py-2">
       <Text className="pb-4 font-inter-semibold text-[16px] leading-[140%] text-text-main ">
         {user!.name}
       </Text>
