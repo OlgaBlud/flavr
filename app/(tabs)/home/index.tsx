@@ -25,15 +25,16 @@ export default function HomeScreen() {
   ];
 
   return (
-    <SafeAreaView className="flex-1" edges={["top"]} style={styles.safeArea}>
-      <View style={styles.container}>
-        {/* Main content - Map or List */}
-        <View style={styles.content}>
-          {viewMode === "map" ? <MapView /> : <ListView />}
-        </View>
+    <View style={styles.wrapper}>
+      {viewMode === "map" ? (
+        <View style={styles.container}>
+          {/* Map View - Full Screen */}
+          <View style={styles.content}>
+            <MapView />
+          </View>
 
-        {/* Overlay Controls */}
-        <View style={styles.overlayContainer}>
+          {/* Overlay Controls for Map */}
+          <SafeAreaView edges={["top"]} style={styles.overlayContainer}>
           {/* Search Bar */}
           <View style={styles.searchSection}>
             {/* Search Input */}
@@ -61,79 +62,148 @@ export default function HomeScreen() {
                 style={styles.avatar} 
               />
             </TouchableOpacity>
-
-            {/* Map/List Toggle */}
-            <View style={styles.toggleContainer}>
-              <TouchableOpacity
-                style={[
-                  styles.toggleBtn,
-                  viewMode === "map" && styles.toggleBtnActive,
-                ]}
-                onPress={() => setViewMode("map")}
-              >
-                <MapIcon 
-                  width={20} 
-                  height={20} 
-                  color={viewMode === "map" ? "#FFFFFF" : "#757575"} 
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  styles.toggleBtn,
-                  viewMode === "list" && styles.toggleBtnActive,
-                ]}
-                onPress={() => setViewMode("list")}
-              >
-                <ListIcon 
-                  width={20} 
-                  height={20} 
-                  color={viewMode === "list" ? "#FFFFFF" : "#757575"} 
-                />
-              </TouchableOpacity>
-            </View>
           </View>
 
-          {/* Categories for List View */}
-          {viewMode === "list" && (
-            <View style={styles.categoriesContainer}>
-              <TouchableOpacity style={styles.filterButton}>
-                <Filter width={20} height={20} color="#FF9500" />
-              </TouchableOpacity>
+          {/* Categories for both Map and List View */}
+          <View style={styles.categoriesContainer}>
+            <TouchableOpacity style={styles.filterButton}>
+              <Filter width={20} height={20} color="#FF9500" />
+            </TouchableOpacity>
 
-              <ScrollView 
-                horizontal 
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.categoriesScroll}
-              >
-                {categories.map((category) => {
-                  const Icon = category.icon;
-                  return (
-                    <TouchableOpacity
-                      key={category.id}
-                      style={[
-                        styles.categoryChip,
-                        activeCategory === category.label && styles.categoryChipActive,
-                      ]}
-                      onPress={() => setActiveCategory(category.label)}
-                    >
-                      <Icon width={20} height={20} color="#FF9500" />
-                      <Text style={styles.categoryText}>
-                        {category.label} ({category.count})
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </ScrollView>
-            </View>
-          )}
+            <ScrollView 
+              horizontal 
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.categoriesScroll}
+            >
+              {categories.map((category) => {
+                const Icon = category.icon;
+                return (
+                  <TouchableOpacity
+                    key={category.id}
+                    style={[
+                      styles.categoryChip,
+                      activeCategory === category.label && styles.categoryChipActive,
+                    ]}
+                    onPress={() => setActiveCategory(category.label)}
+                  >
+                    <Icon width={20} height={20} color="#FF9500" />
+                    <Text style={styles.categoryText}>
+                      {category.label} ({category.count})
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          </View>
+          </SafeAreaView>
+
+          {/* Floating Toggle Button for Map View */}
+          <SafeAreaView edges={["bottom"]} style={styles.floatingToggleContainer}>
+            <TouchableOpacity
+              style={styles.floatingToggleBtn}
+              onPress={() => setViewMode("list")}
+            >
+              <ListIcon width={20} height={20} color="#FFFFFF" />
+              <Text style={styles.floatingToggleText}>List</Text>
+            </TouchableOpacity>
+          </SafeAreaView>
         </View>
-      </View>
-    </SafeAreaView>
+      ) : (
+        <SafeAreaView className="flex-1" edges={["top"]} style={styles.listSafeArea}>
+          <View style={styles.container}>
+            {/* List View */}
+            <View style={styles.content}>
+              <ListView />
+            </View>
+
+            {/* Overlay Controls for List */}
+            <View style={styles.overlayContainer}>
+              {/* Search Bar */}
+              <View style={styles.searchSection}>
+                {/* Search Input */}
+                <View style={styles.searchBar}>
+                  <TouchableOpacity>
+                    <Search width={21} height={21} color="#7F7F7F" />
+                  </TouchableOpacity>
+                  <TextInput
+                    placeholder="Find the greatest place"
+                    placeholderTextColor="#7F7F7F"
+                    style={styles.searchInput}
+                  />
+                  <TouchableOpacity>
+                    <Microphone width={31} height={31} color="#F45A06" />
+                  </TouchableOpacity>
+                </View>
+
+                {/* Profile Avatar */}
+                <TouchableOpacity 
+                  style={styles.avatarButton}
+                  onPress={() => router.push("/profile")}
+                >
+                  <Image 
+                    source={user?.avatar ? { uri: user.avatar } : images.pp1} 
+                    style={styles.avatar} 
+                  />
+                </TouchableOpacity>
+              </View>
+
+              {/* Categories for both Map and List View */}
+              <View style={styles.categoriesContainer}>
+                <TouchableOpacity style={styles.filterButton}>
+                  <Filter width={20} height={20} color="#FF9500" />
+                </TouchableOpacity>
+
+                <ScrollView 
+                  horizontal 
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.categoriesScroll}
+                >
+                  {categories.map((category) => {
+                    const Icon = category.icon;
+                    return (
+                      <TouchableOpacity
+                        key={category.id}
+                        style={[
+                          styles.categoryChip,
+                          activeCategory === category.label && styles.categoryChipActive,
+                        ]}
+                        onPress={() => setActiveCategory(category.label)}
+                      >
+                        <Icon width={20} height={20} color="#FF9500" />
+                        <Text style={styles.categoryText}>
+                          {category.label} ({category.count})
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </ScrollView>
+              </View>
+            </View>
+
+            {/* Floating Toggle Button for List View */}
+            <SafeAreaView edges={["bottom"]} style={styles.floatingToggleContainer}>
+              <TouchableOpacity
+                style={styles.floatingToggleBtn}
+                onPress={() => setViewMode("map")}
+              >
+                <MapIcon width={20} height={20} color="#FFFFFF" />
+                <Text style={styles.floatingToggleText}>Map</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
+          </View>
+        </SafeAreaView>
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
+  wrapper: {
+    flex: 1,
+    backgroundColor: "#FDFBF9",
+  },
+  listSafeArea: {
+    flex: 1,
     backgroundColor: "#FDFBF9",
   },
   container: {
@@ -162,17 +232,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
-    borderRadius: 30,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    borderRadius: 34,
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingLeft: 16,
+    paddingRight: 8,
     gap: 12,
-    shadowColor: "#000",
+    shadowColor: "rgba(129, 85, 61, 0.08)",
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 4,
     },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
+    shadowOpacity: 1,
+    shadowRadius: 20,
     elevation: 4,
   },
   searchInput: {
@@ -201,29 +273,34 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  toggleContainer: {
+  floatingToggleContainer: {
+    position: "absolute",
+    bottom: 0,
+    right: 16,
+    zIndex: 20,
+  },
+  floatingToggleBtn: {
     flexDirection: "row",
-    backgroundColor: "#FFFFFF",
+    alignItems: "center",
+    gap: 8,
+    backgroundColor: "#FF9500",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
     borderRadius: 24,
-    padding: 4,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 4,
     },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 4,
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 8,
   },
-  toggleBtn: {
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  toggleBtnActive: {
-    backgroundColor: "#FF9500",
+  floatingToggleText: {
+    fontSize: 14,
+    fontFamily: "PoppinsMedium",
+    color: "#FFFFFF",
+    fontWeight: "600",
   },
   categoriesContainer: {
     flexDirection: "row",

@@ -30,6 +30,14 @@ export default function MapView() {
   <style>
     body { margin: 0; padding: 0; }
     #map { height: 100vh; width: 100vw; }
+    .leaflet-top.leaflet-left {
+      left: auto !important;
+      right: 0 !important;
+    }
+    .leaflet-control-zoom {
+      margin-top: 220px !important;
+      margin-right: 16px !important;
+    }
     .custom-marker-wrapper {
       position: relative;
       cursor: pointer;
@@ -47,16 +55,16 @@ export default function MapView() {
     }
     .marker-image-wrapper {
       position: relative;
-      width: 60px;
-      height: 60px;
+      width: 43px;
+      height: 43px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .marker-image-container {
-      width: 60px;
-      height: 60px;
+      width: 43px;
+      height: 43px;
       border-radius: 50%;
       border: 3px solid white;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -83,8 +91,8 @@ export default function MapView() {
     }
     .marker-rating {
       position: absolute;
-      top: -4px;
-      right: -8px;
+      top: 0px;
+      right: -12px;
       z-index: 10;
       background: white;
       border-radius: 12px;
