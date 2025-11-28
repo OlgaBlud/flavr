@@ -49,7 +49,7 @@ export default function TabsLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: "Home",
           tabBarIcon: ({ focused }) => (
@@ -98,7 +98,7 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="place/[id]"
+        name="index"
         options={{
           href: null,
           title: "",

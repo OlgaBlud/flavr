@@ -6,6 +6,7 @@ import { ActivityIndicator, View } from "react-native";
 import "./global.css";
 
 export default function RootLayout() {
+  console.log("root LO djfn");
   const { fetchAuthenticatedUser, isLoading, user } = useAuthStore();
   const [fontsLoaded, error] = useFonts({
     PoppinsMedium: require("../assets/fonts/Poppins-Medium.ttf"),

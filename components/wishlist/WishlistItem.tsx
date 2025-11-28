@@ -6,7 +6,7 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 
 interface WishlistItemProps {
@@ -21,7 +21,7 @@ export default function WishlistItem({ place, onPress }: WishlistItemProps) {
     if (onPress) {
       onPress();
     } else {
-      router.push(`/restaurant/${place.id}?source=list`);
+      router.replace(`/home/${place.id}?source=list` as any);
     }
   };
 
@@ -46,7 +46,7 @@ export default function WishlistItem({ place, onPress }: WishlistItemProps) {
 
 const styles = StyleSheet.create({
   container: {
-    width: '32%',
+    width: "32%",
     aspectRatio: 110 / 187,
     borderRadius: 4,
     overflow: "hidden",

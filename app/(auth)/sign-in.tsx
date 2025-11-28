@@ -25,7 +25,7 @@ export default function SignIn() {
       // console.log("logged google successfully");
       await fetchAuthenticatedUser();
       // console.log("fetch google successfully");
-      router.replace("/");
+      router.replace("/home");
     } catch (error) {
       // console.log("Google login error:", error);
       Alert.alert("Error catch", "Google login failed");

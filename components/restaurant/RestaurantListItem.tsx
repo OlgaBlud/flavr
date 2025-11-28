@@ -24,7 +24,7 @@ export default function RestaurantListItem({
   const router = useRouter();
 
   const handlePress = () => {
-    router.push(`/place/${restaurant.id}?source=list` as Href);
+    router.push(`/home/${restaurant.id}?source=list` as Href);
   };
 
   // Render star rating

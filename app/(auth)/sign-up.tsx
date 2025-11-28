@@ -5,19 +5,19 @@ import { signUpAppwrite } from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
 
 import {
-    validateConfirmPassword,
-    validateEmail,
-    validateName,
-    validatePassword,
+  validateConfirmPassword,
+  validateEmail,
+  validateName,
+  validatePassword,
 } from "@/utils/validation";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
-    Alert,
-    Keyboard,
-    ScrollView,
-    TouchableWithoutFeedback,
-    View,
+  Alert,
+  Keyboard,
+  ScrollView,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 
 export default function SignUp() {
@@ -106,7 +106,7 @@ export default function SignUp() {
       // console.log("signUpAppwrite success");
       await fetchAuthenticatedUser();
       // console.log("fetchAuthenticatedUser success");
-      router.replace("/");
+      router.replace("/home");
     } catch (error: any) {
       Alert.alert("Error handleSubmit sign up", error.message);
     }

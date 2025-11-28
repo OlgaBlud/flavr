@@ -36,7 +36,7 @@ export default function RestaurantDetailsScreen() {
   }
 
   return (
-    <View className="flex-1 ">
+    <View className="flex-1">
       <ImageBackground
         style={{
           position: "absolute",
@@ -55,7 +55,7 @@ export default function RestaurantDetailsScreen() {
               style={styles.btnWrap}
               onPress={() => {
                 if (source === "map") {
-                  router.push("/(tabs)");
+                  router.push("/home");
                 } else {
                   router.back();
                 }

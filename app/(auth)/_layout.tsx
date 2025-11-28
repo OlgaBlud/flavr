@@ -13,7 +13,7 @@ import {
 
 export default function AuthLayout() {
   const { isAuthenticated } = useAuthStore();
-  if (isAuthenticated) return <Redirect href="/" />;
+  if (isAuthenticated) return <Redirect href="/home" />;
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
