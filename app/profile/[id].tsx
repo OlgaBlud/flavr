@@ -44,7 +44,7 @@ export default function FriendProfileScreen() {
         <View className="py-2">
           <View className="flex-row items-center pb-4 gap-2">
             <TouchableOpacity onPress={() => router.back()} className="mr-2">
-              <ArrowLeft width={24} height={24} color="#7F7F7F" />
+              <ArrowLeft width={16} height={24} color="#7F7F7F" />
             </TouchableOpacity>
             <Text className="font-inter-semibold text-[16px] leading-[140%] text-text-main">
               {friend.name}
