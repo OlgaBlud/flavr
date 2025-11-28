@@ -1,11 +1,23 @@
 import ArrowLeft from "@/assets/icons/ArrowLeft";
 import { GradientButton } from "@/components/ui/GradientButton";
-import { logoutAppwrite, updateUserProfile, uploadAvatar } from "@/lib/appwrite/appwrite";
+import {
+  logoutAppwrite,
+  updateUserProfile,
+  uploadAvatar,
+} from "@/lib/appwrite/appwrite";
 import useAuthStore from "@/store/auth.store";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Alert, Button, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Button,
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function EditProfile() {
   const router = useRouter();
@@ -17,7 +29,8 @@ export default function EditProfile() {
 
   const pickImage = async () => {
     try {
-      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
 
       if (status !== "granted") {
         Alert.alert(
@@ -56,7 +69,7 @@ export default function EditProfile() {
       console.log("handleSave - User ID:", user.$id);
       console.log("handleSave - Current avatar:", user.avatar);
       console.log("handleSave - New avatar:", avatar);
-      
+
       let avatarUrl = user.avatar;
 
       // Upload avatar if changed
@@ -67,7 +80,9 @@ export default function EditProfile() {
       }
 
       // Update profile in Appwrite
-      const updateData: { userName?: string; avatar?: string } = { userName: name };
+      const updateData: { userName?: string; avatar?: string } = {
+        userName: name,
+      };
       if (avatarUrl !== user.avatar) {
         updateData.avatar = avatarUrl;
       }
@@ -90,7 +105,7 @@ export default function EditProfile() {
       console.error("Error message:", error?.message);
       console.error("Error response:", error?.response);
       Alert.alert(
-        "Error", 
+        "Error",
         `Failed to update profile: ${error?.message || "Unknown error"}`
       );
     } finally {

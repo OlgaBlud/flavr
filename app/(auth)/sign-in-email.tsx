@@ -70,7 +70,7 @@ export default function SignInEmail() {
     try {
       await loginEmailAppwrite(inputValues.email, inputValues.password);
       await fetchAuthenticatedUser();
-      router.replace("/");
+      router.replace("/home");
       // console.log("success login email + password");
     } catch (error: any) {
       Alert.alert("Error LoginEmail:", error.message);

@@ -55,7 +55,7 @@ export default function RestaurantDetailsScreen() {
               style={styles.btnWrap}
               onPress={() => {
                 if (source === "map") {
-                  router.push("/(tabs)");
+                  router.push("/home");
                 } else {
                   router.back();
                 }
