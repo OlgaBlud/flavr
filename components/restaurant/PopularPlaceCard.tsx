@@ -44,8 +44,8 @@ export default function PopularPlaceCard({
     onLike?.();
   };
 
-  const handlePress = () => {
-    router.push(`/home/${id}?source=map`);
+  const handlePress = () => {    
+      router.replace(`/home/${id}?source=list` as any);
   };
 
   return (

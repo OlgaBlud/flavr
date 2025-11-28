@@ -21,7 +21,7 @@ export default function WishlistItem({ place, onPress }: WishlistItemProps) {
     if (onPress) {
       onPress();
     } else {
-      router.push(`/home/${place.id}?source=list`);
+      router.replace(`/home/${place.id}?source=list` as any);
     }
   };
 
