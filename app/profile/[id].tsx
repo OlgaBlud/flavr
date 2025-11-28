@@ -7,7 +7,7 @@ import { SolidButton } from "@/components/ui/SolidButton";
 import { storyCollections } from "@/mock-data/storyCollections";
 import { getUserById } from "@/mock-data/test-friends";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function FriendProfileScreen() {
@@ -38,81 +38,79 @@ export default function FriendProfileScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-[#FDFBF9]" edges={["top"]}>
-      <ScrollView className="flex-1 px-6">
-        {/* Profile Top Bar - similar to ProfileTopBar */}
-        <View className="py-2">
-          <View className="flex-row items-center pb-4 gap-2">
-            <TouchableOpacity onPress={() => router.back()} className="mr-2">
-              <ArrowLeft width={16} height={24} color="#7F7F7F" />
-            </TouchableOpacity>
-            <Text className="font-inter-semibold text-[16px] leading-[140%] text-text-main">
-              {friend.name}
-            </Text>
+    <SafeAreaView className="flex-1 bg-[#FDFBF9] p-6" edges={["top"]}>
+      {/* Profile Top Bar - similar to ProfileTopBar */}
+      <View className="py-2">
+        <View className="flex-row items-center pb-4 gap-2">
+          <TouchableOpacity onPress={() => router.back()} className="mr-2">
+            <ArrowLeft width={16} height={24} color="#7F7F7F" />
+          </TouchableOpacity>
+          <Text className="font-inter-semibold text-[16px] leading-[140%] text-text-main">
+            {friend.name}
+          </Text>
+        </View>
+        <View className="flex-row items-center">
+          {/* avatar wrap */}
+          <View className="w-[78px] h-[78px] mr-[24px] justify-center items-center">
+            <Image
+              className="w-[78px] h-[78px] rounded-full"
+              source={{ uri: friend.avatar }}
+            />
           </View>
-          <View className="flex-row items-center">
-            {/* avatar wrap */}
-            <View className="w-[78px] h-[78px] mr-[24px] justify-center items-center">
-              <Image
-                className="w-[78px] h-[78px] rounded-full"
-                source={{ uri: friend.avatar }}
-              />
+          {/* statistic wrap */}
+          <View className="flex-1 justify-between flex-row">
+            <View className="justify-center">
+              <Text className="font-inter-semibold text-[16px] leading-[140%] text-text-main mb-[4px]">
+                {friend.followers >= 1000 ? `${Math.floor(friend.followers / 1000)}k` : friend.followers}
+              </Text>
+              <Text className="font-inter-semibold text-[14px] leading-[140%] text-text-light lowercase">
+                Followers
+              </Text>
             </View>
-            {/* statistic wrap */}
-            <View className="flex-1 justify-between flex-row">
-              <View className="justify-center">
-                <Text className="font-inter-semibold text-[16px] leading-[140%] text-text-main mb-[4px]">
-                  {friend.followers >= 1000 ? `${Math.floor(friend.followers / 1000)}k` : friend.followers}
-                </Text>
-                <Text className="font-inter-semibold text-[14px] leading-[140%] text-text-light lowercase">
-                  Followers
-                </Text>
-              </View>
-              <View>
-                <Text className="font-inter-semibold text-[16px] leading-[140%] text-text-main mb-[4px]">
-                  {friend.following >= 1000 ? `${Math.floor(friend.following / 1000)}k` : friend.following}
-                </Text>
-                <Text className="font-inter-semibold text-[14px] leading-[140%] text-text-light lowercase">
-                  Following
-                </Text>
-              </View>
-              <View>
-                <Text className="font-inter-semibold text-[16px] leading-[140%] text-text-main mb-[4px]">
-                  {friend.places}
-                </Text>
-                <Text className="font-inter-semibold text-[14px] leading-[140%] text-text-light lowercase">
-                  Places
-                </Text>
-              </View>
+            <View>
+              <Text className="font-inter-semibold text-[16px] leading-[140%] text-text-main mb-[4px]">
+                {friend.following >= 1000 ? `${Math.floor(friend.following / 1000)}k` : friend.following}
+              </Text>
+              <Text className="font-inter-semibold text-[14px] leading-[140%] text-text-light lowercase">
+                Following
+              </Text>
+            </View>
+            <View>
+              <Text className="font-inter-semibold text-[16px] leading-[140%] text-text-main mb-[4px]">
+                {friend.places}
+              </Text>
+              <Text className="font-inter-semibold text-[14px] leading-[140%] text-text-light lowercase">
+                Places
+              </Text>
             </View>
           </View>
         </View>
+      </View>
 
-        {/* Profile Buttons - Follow and Message instead of Update Profile */}
-        <View className="flex-row gap-3 mt-4">
-          <View className="flex-1">
-            <GradientButton 
-              text="Follow" 
-              onPress={handleFollowPress}
-            />
-          </View>
-          <View className="flex-1">
-            <SolidButton 
-              text="Message"
-              onPress={handleMessagePress}
-              icon={<MessageIcon width={16} height={16} color="#F45A06" />}
-            />
-          </View>
+      {/* Profile Buttons - Follow and Message instead of Update Profile */}
+      <View className="flex-row gap-3 mt-4">
+        <View className="flex-1">
+          <GradientButton 
+            text="Follow" 
+            onPress={handleFollowPress}
+          />
         </View>
-
-        {/* story collections - without Add button */}
-        <View className="py-[24px]">
-          <StoryCollections storyCollections={storyCollections} />
+        <View className="flex-1">
+          <SolidButton 
+            text="Message"
+            onPress={handleMessagePress}
+            icon={<MessageIcon width={16} height={16} color="#F45A06" />}
+          />
         </View>
+      </View>
 
-        {/* profile tabs */}
-        <ProfileInnerTabs />
-      </ScrollView>
+      {/* story collections - without Add button */}
+      <View className="py-[24px]">
+        <StoryCollections storyCollections={storyCollections} />
+      </View>
+
+      {/* profile tabs */}
+      <ProfileInnerTabs />
     </SafeAreaView>
   );
 }
