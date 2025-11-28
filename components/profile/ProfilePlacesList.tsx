@@ -7,8 +7,21 @@ const ProfilePlacesList = () => {
   return (
     <FlatList
       data={restaurantsMock}
-      renderItem={({ item }) => <RestaurantCard {...item} />}
-      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <RestaurantCard
+          name={item.name}
+          image={item.image}
+          ratings={{
+            food: item.food || 0,
+            service: item.service || 0,
+            atmosphere: item.atmosphere || 0,
+          }}
+          reviewsCount={item.reviews}
+          friendReviews={0}
+          tags={item.tags}
+        />
+      )}
+      keyExtractor={(item) => item.id.toString()}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ gap: 12 }}
     />

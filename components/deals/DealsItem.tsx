@@ -12,7 +12,7 @@ interface DealsItemProps {
 export default function DealsItem({ deal, onPress }: DealsItemProps) {
   return (
     <View style={styles.container}>
-      <Image source={deal.image} style={styles.image} />
+      <Image source={{ uri: deal.image }} style={styles.image} />
       
       <View style={styles.content}>
         <Text style={styles.restaurantName}>{deal.restaurantName}</Text>

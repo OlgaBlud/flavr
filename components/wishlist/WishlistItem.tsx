@@ -3,10 +3,10 @@ import { WishlistPlace } from "@/store/wishlist.store";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
+    ImageBackground,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
 } from "react-native";
 
 interface WishlistItemProps {
@@ -32,7 +32,7 @@ export default function WishlistItem({ place, onPress }: WishlistItemProps) {
       activeOpacity={0.8}
     >
       <ImageBackground
-        source={place.image}
+        source={{ uri: place.image }}
         style={styles.imageBackground}
         imageStyle={styles.image}
       >

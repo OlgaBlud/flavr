@@ -8,12 +8,12 @@ import { BlurView } from "expo-blur";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import {
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    Dimensions,
+    ImageBackground,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -44,7 +44,7 @@ export default function RestaurantDetailsScreen() {
           width: width,
           height: width,
         }}
-        source={restaurant.image}
+        source={{ uri: restaurant.image }}
         resizeMode="cover"
       ></ImageBackground>
       <SafeAreaView className="flex-1" edges={["top"]}>
