@@ -2,24 +2,17 @@ import Microphone from "@/assets/icons/Microphone";
 import Search from "@/assets/icons/Search";
 import useAuthStore from "@/store/auth.store";
 import { router } from "expo-router";
-import React, { useCallback, useMemo } from "react";
-import { Image, StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { Image, TextInput, TouchableOpacity, View } from "react-native";
 
 const MessagesSearch = () => {
   const { user } = useAuthStore();
-  
-  const handleProfilePress = useCallback(() => {
-    router.push("/profile");
-  }, []);
-
-  const searchBarStyle = useMemo(() => styles.searchBar, []);
-
   return (
-    <View className="flex-row py-2 gap-2">
+    <View className="flex-row  py-2 gap-2">
       {/* add avatar transition to profile page */}
       <TouchableOpacity
         className="py-2"
-        onPress={handleProfilePress}
+        onPress={() => router.push("/profile")}
       >
         <Image
           source={{ uri: user!.avatar }}
@@ -28,7 +21,19 @@ const MessagesSearch = () => {
       </TouchableOpacity>
       <View
         className="flex-1 gap-4 flex-row justify-between items-center bg-white"
-        style={searchBarStyle}
+        style={{
+          backgroundColor: "#fff",
+          borderRadius: 34,
+          paddingTop: 8,
+          paddingBottom: 8,
+          paddingLeft: 16,
+          paddingRight: 8,
+          shadowColor: "rgba(129, 85, 61, 0.08)",
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 1,
+          shadowRadius: 20,
+          elevation: 5,
+        }}
       >
         <TouchableOpacity>
           <Search width={21} height={21} color={"#7F7F7F"} />
@@ -46,20 +51,4 @@ const MessagesSearch = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  searchBar: {
-    backgroundColor: "#fff",
-    borderRadius: 34,
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingLeft: 16,
-    paddingRight: 8,
-    shadowColor: "rgba(129, 85, 61, 0.08)",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 5,
-  },
-});
-
-export default React.memo(MessagesSearch);
+export default MessagesSearch;
