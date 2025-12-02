@@ -65,7 +65,7 @@ const RestaurantCard = ({
           }}
         >
           <View className="flex-row items-center">
-            <Reviewers width={16} height={16} color={"#ffffff"} />
+            <Reviewers width={16} height={16} color={"#ffffff"} />.0
             <Text className="ml-1 font-inter text-[10px] leading-[132%] text-white">
               Overall Rating
             </Text>

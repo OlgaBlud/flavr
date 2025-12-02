@@ -55,16 +55,16 @@ export default function MapView() {
     }
     .marker-image-wrapper {
       position: relative;
-      width: 43px;
-      height: 43px;
+      width: 60px;
+      height: 60px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .marker-image-container {
-      width: 43px;
-      height: 43px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       border: 3px solid white;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -91,8 +91,8 @@ export default function MapView() {
     }
     .marker-rating {
       position: absolute;
-      top: 0px;
-      right: -12px;
+      top: -4px;
+      right: -8px;
       z-index: 10;
       background: white;
       border-radius: 12px;

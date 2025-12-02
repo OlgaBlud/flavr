@@ -44,12 +44,14 @@ export type popularPlaceProps = {
 };
 
 export type ReviewProps = {
+  id: number;
   name: string;
   photo: string;
   food: number;
   service: number;
   atmosphere: number;
   review: string;
+  isFriend?: boolean;
 };
 
 export interface AuthInputProps {

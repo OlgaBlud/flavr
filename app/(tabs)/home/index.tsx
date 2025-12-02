@@ -9,6 +9,7 @@ import ListView from "@/components/restaurant/ListView";
 import MapView from "@/components/restaurant/MapView";
 import { images } from "@/constants";
 import useAuthStore from "@/store/auth.store";
+import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
@@ -100,11 +101,17 @@ export default function HomeScreen() {
           {/* Floating Toggle Button for Map View */}
           <SafeAreaView edges={["bottom"]} style={styles.floatingToggleContainer}>
             <TouchableOpacity
-              style={styles.floatingToggleBtn}
               onPress={() => setViewMode("list")}
             >
-              <ListIcon width={20} height={20} color="#FFFFFF" />
-              <Text style={styles.floatingToggleText}>List</Text>
+              <LinearGradient
+                colors={["#ff9500", "#f45905"]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.floatingToggleBtn}
+              >
+                <ListIcon width={20} height={20} color="#FFFFFF" />
+                <Text style={styles.floatingToggleText}>List</Text>
+              </LinearGradient>
             </TouchableOpacity>
           </SafeAreaView>
         </View>
@@ -183,11 +190,17 @@ export default function HomeScreen() {
             {/* Floating Toggle Button for List View */}
             <SafeAreaView edges={["bottom"]} style={styles.floatingToggleContainer}>
               <TouchableOpacity
-                style={styles.floatingToggleBtn}
                 onPress={() => setViewMode("map")}
               >
-                <MapIcon width={20} height={20} color="#FFFFFF" />
-                <Text style={styles.floatingToggleText}>Map</Text>
+                <LinearGradient
+                  colors={["#ff9500", "#f45905"]}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  style={styles.floatingToggleBtn}
+                >
+                  <MapIcon width={20} height={20} color="#FFFFFF" />
+                  <Text style={styles.floatingToggleText}>Map</Text>
+                </LinearGradient>
               </TouchableOpacity>
             </SafeAreaView>
           </View>
@@ -283,7 +296,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    backgroundColor: "#FF9500",
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 24,
@@ -298,6 +310,10 @@ const styles = StyleSheet.create({
   },
   floatingToggleText: {
     fontSize: 14,
+    fontWeight: "500",
+    color: "#FFFFFF",
+    textAlign: "center",
+    fontFamily: "PoppinsMedium",
     fontFamily: "PoppinsMedium",
     color: "#FFFFFF",
     fontWeight: "600",
